@@ -14,11 +14,11 @@ const TopNav = (props) => (
 
     <Nav>
       <NavItem eventKey={1}>
-        <Link to="/products">Products</Link>
+        <Link to="/achievements">Achievements</Link>
       </NavItem>
 
       <NavItem eventKey={2}>
-        <Link to="/clients">Clients</Link>
+        <Link to="/diary">Diary</Link>
       </NavItem>
     </Nav>
 
