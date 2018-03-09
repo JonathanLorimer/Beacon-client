@@ -5,7 +5,7 @@ This is the base API access code. Everything here deals with ALL requests, no ma
 You should add here all basic information about your server, including basic app authentication (headers, tokens, etc.)
 */
 
-const API_HOST = process.env.API_HOST || 'http://localhost:8080'
+const API_HOST = process.env.API_HOST || 'http://localhost:3000'
 const API_NAMESPACE = process.env.API_NAMESPACE || '/'
 const BASEURL = `${API_HOST}${API_NAMESPACE}`
 
