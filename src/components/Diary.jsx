@@ -3,9 +3,9 @@ import { Row, Col, PageHeader, Table } from 'react-bootstrap'
 
 // Client-side model
 import Resource from '../models/resource'
-const ClientStore = Resource('districts')
+const ClientStore = Resource('users')
 
-class Clients extends React.Component {
+class Diary extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -53,4 +53,4 @@ class Clients extends React.Component {
   }
 }
 
-export default Clients
+export default Diary
