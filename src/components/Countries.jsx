@@ -3,6 +3,8 @@ import React from 'react'
 
 // Client-side model
 import Resource from '../models/resource'
+import Regions from './Regions'
+
 const CountriesList = Resource('countries')
 
 
@@ -30,7 +32,9 @@ class Countries extends React.Component {
             <tbody>
               {this.state.countries.map((country, index) => (
                 <tr key={index}>
+
                   <td>{country.name}</td>
+                   <td><Regions /></td>
                 </tr>
               ))}
             </tbody>

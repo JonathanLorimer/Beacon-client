@@ -6,6 +6,8 @@ import { Route, Switch, Link } from 'react-router-dom'
 import ProductDetails from './ProductDetails'
 import Countries from './Countries'
 
+
+
 // Client-side model
 import Resource from '../models/resource'
 const Continents = Resource('continents')
