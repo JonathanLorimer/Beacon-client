@@ -3,8 +3,8 @@ import { Route, Switch } from 'react-router-dom'
 import { Grid } from 'react-bootstrap'
 
 import TopNav from './TopNav'
-import Clients from './Clients'
-import Products from './Products'
+import Diary from './Diary'
+import Achievements from './Achievements'
 import Dashboard from './Dashboard'
 
 /*
@@ -20,8 +20,8 @@ const App = (props) => (
     <Grid>
       <Switch>
         <Route path="/" exact component={Dashboard} />
-        <Route path="/products" component={Products} />
-        <Route path="/clients" component={Clients} />
+        <Route path="/achievements" component={Achievements} />
+        <Route path="/diary" component={Diary} />
       </Switch>
     </Grid>
   </div>
