@@ -7,7 +7,7 @@ import ProductDetails from './ProductDetails'
 
 // Client-side model
 import Resource from '../models/resource'
-const ProductStore = Resource('products')
+const ProductStore = Resource('locations')
 
 
 class Products extends React.Component {
@@ -52,12 +52,13 @@ class Products extends React.Component {
                   <td>{product.id}</td>
                   <td>
                     {/* <Link> is a react-router component that works pretty much like <a href> */}
-                    <Link to={`/products/${product.id}`}>
+                    <Link to={`/locations/${product.id}`}>
                       {product.name}
                     </Link>
                   </td>
-                  <td>{product.price}</td>
-                  <td>{product.quantity}</td>
+                  <td>{product.latitude}</td>
+                  <td>{product.longitude}</td>
+                  <td>{product.category}</td>
                 </tr>
               ))}
             </tbody>
@@ -65,7 +66,7 @@ class Products extends React.Component {
 
           {/* If the URL has an id at the end, we show the details dialog */}
           <Switch>
-            <Route path="/products/:id" component={ProductDetails} />
+            <Route path="/locations/:id" component={ProductDetails} />
           </Switch>
 
         </Col>

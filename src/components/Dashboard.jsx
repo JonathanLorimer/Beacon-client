@@ -5,7 +5,7 @@ const Dashboard = (props) => (
   <Row>
     <Col xs={12}>
       <PageHeader>
-        Welcome <small>to whatever this is!</small>
+        Welcome <small>to Beacon</small>
       </PageHeader>
     </Col>
   </Row>

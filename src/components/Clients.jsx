@@ -3,7 +3,7 @@ import { Row, Col, PageHeader, Table } from 'react-bootstrap'
 
 // Client-side model
 import Resource from '../models/resource'
-const ClientStore = Resource('clients')
+const ClientStore = Resource('districts')
 
 class Clients extends React.Component {
   constructor(props) {
@@ -42,8 +42,7 @@ class Clients extends React.Component {
               {this.state.clients.map((client, index) => (
                 <tr key={index}>
                   <td>{client.id}</td>
-                  <td>{client.firstName} {client.lastName}</td>
-                  <td>{client.email}</td>
+                  <td>{client.name}</td>
                 </tr>
               ))}
             </tbody>
