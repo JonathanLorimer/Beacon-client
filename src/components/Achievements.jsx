@@ -18,7 +18,7 @@ class Achievements extends React.Component {
     super(props)
     this.state = {
       continents: [],
-      selectedContinent: {},
+      selected_id: 0,
       showDetails: false,
       errors: null
     }
@@ -28,6 +28,10 @@ class Achievements extends React.Component {
     Continents.findAll() // continentstore does the API fetching!
       .then((result) => this.setState({ continents: result.data, errors: null }))
       .catch((errors) => this.setState({ errors: errors }))
+  }
+
+  showChildren = (parent) => {
+    this.setState({ selected_id: parent.id })
   }
 
   render() {
@@ -53,11 +57,11 @@ class Achievements extends React.Component {
             </thead>
 
             <tbody>
-              {this.state.continents.map((continent, index) => (
-                <tr key={index}>
-                  <td>{continent.name}</td>
-                  <td><Countries /></td>
-                </tr>
+              {this.state.continents.map((continent, index) => (              
+                <td><button name="this continent" className="achievement" onClick={event => {
+                  this.showChildren(continent);
+                }}>{continent.name}</button>
+                <Countries parent={this.state.selected_id}/></td>                  
               ))}
             </tbody>
           </Table>

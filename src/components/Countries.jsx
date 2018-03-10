@@ -13,7 +13,7 @@ class Countries extends React.Component {
     super(props)
     this.state = {
       countries: [],
-      selectedCountry: {},
+      selected_id: 0,
       showDetails: false,
       errors: null
     }
@@ -25,18 +25,23 @@ class Countries extends React.Component {
       .catch((errors) => this.setState({ errors: errors }))
   }
 
+  showChildren = (parent) => {
+    this.setState({ selected_id: parent.id })
+  }
+
   render() {
     return (
 
 
             <tbody>
               {this.state.countries.map((country, index) => (
-                <tr key={index}>
-
-                  <td>{country.name}</td>
-                   <td><Regions /></td>
-                </tr>
-              ))}
+                (country.continent_id === this.props.parent) ?                
+                <td><button className="achievement" onClick ={event => {
+                  this.showChildren(country);
+                }} >{country.name}</button>
+                <Regions parent={this.state.selected_id}/></td> :
+                  <td> no regions </td>
+                ))}
             </tbody>
     )
   }
