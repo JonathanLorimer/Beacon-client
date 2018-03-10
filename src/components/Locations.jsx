@@ -28,15 +28,10 @@ class Locations extends React.Component {
   render() {
     return (
 
-
             <tbody>
               {this.state.locations.map((location, index) => (
-                <tr key={index}>
-
-                  <td>{location.name}</td>
-
-                </tr>
-              ))}
+                (location.district_id === this.props.parent) && <td><button className="achievement">{location.name}</button></td>
+              ))}           
             </tbody>
     )
   }

@@ -12,7 +12,7 @@ class Districts extends React.Component {
     super(props)
     this.state = {
       districts: [],
-      selectedDistrict: {},
+      selected_id: 0,
       showDetails: false,
       errors: null
     }
@@ -24,16 +24,22 @@ class Districts extends React.Component {
       .catch((errors) => this.setState({ errors: errors }))
   }
 
+  showChildren = (parent) => {
+    this.setState({ selected_id: parent.id })
+  }
+
   render() {
     return (
 
 
             <tbody>
               {this.state.districts.map((district, index) => (
-                <tr key={index}>
-                  <td>{district.name}</td>
-                  <td><Locations /></td>
-                </tr>
+                (district.neighbourhood_id === this.props.parent) ?
+                  <td><button className="achievement" onClick={event => {
+                    this.showChildren(district);
+                  }} >{district.name}</button>
+                    <Locations parent={this.state.selected_id} /></td> :
+                  <td> no Locations </td>
               ))}
             </tbody>
     )
