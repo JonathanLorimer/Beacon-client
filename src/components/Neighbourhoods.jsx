@@ -1,13 +1,8 @@
 import React from 'react'
-
-
-// Client-side model
 import Resource from '../models/resource'
 import Districts from './Districts'
 
-const NeighbourhoodsList = Resource('neighbourhoods')
-// const DistrictsList = Resource('districts')
-
+const neighbourhoodsList = Resource('cities', 'neighbourhoods')
 
 class Neighbourhoods extends React.Component {
   constructor(props) {
@@ -15,50 +10,45 @@ class Neighbourhoods extends React.Component {
     this.state = {
       neighbourhoods: [],
       selected_id: [],
-      errors: null,
-      childReload: true
+      errors: null
     }
   }
 
   componentWillMount() {
-    NeighbourhoodsList.findAll()
+    neighbourhoodsList.findAllChildren(this.props.parent_id)
       .then((result) => this.setState({ neighbourhoods: result.data, errors: null }))
       .catch((errors) => this.setState({ errors: errors }))
   }
 
-  // That is the children
-  showChildren = (parent) => {
-    this.setState({ selected_id: parent.districts_ids })
+  loadChildren = (ids_array, parent_id) => {
+    if (this.state.loading) {
+      this.setState({ loading: false })
+      return
+    }
+    this.setState({ selected_id: ids_array, parent_id: parent_id, loading: true })
   }
 
-  // findDistrict(neighbourhood) {
-  //   neighbourhood.districts_ids.map(id => {
-  //     DistrictsList.find(id)
-  //       .then((result) => this.setState({ neighbourhoods: result.data, errors: null }))
-  //       .catch((errors) => this.setState({ errors: errors }))
-  //   })
-  // }
+  listPresenter() {
+    const list = this.state.neighbourhoods.map((neighbourhood) => {
+      if (neighbourhood.city_id === this.props.parent_id) {
+        return (<td><button className="achievement neighbourhood" onClick={event => {
+          this.loadChildren(neighbourhood.districts_ids, neighbourhood.id);
+        }} >{neighbourhood.name}</button></td>)
+      }
+    })
+    return list
+  }
 
   render() {
-    const listOfSomething = this.state.neighbourhoods.map((neighbourhood) => {
-      return (                                  
-        (neighbourhood.city_id === this.props.parent) && 
-          (<td><button className="achievement" onClick={event => {
-            this.showChildren(neighbourhood);
-          }} >{neighbourhood.name}</button>
+    return (
 
-          <Districts districtsToDisplay={this.state.selected_id} 
-          showChildren={this.props.showChildren} 
-          reload={this.state.childReload} 
-          parent={neighbourhood.id}/></td>)
-
-        );
-      });
-      return (
-        <div>{listOfSomething}</div>
-      );
+      <tbody>
+        <td>
+          {this.listPresenter()}
+        </td>
+      </tbody>
+    )
   }
 }
 
 export default Neighbourhoods
-

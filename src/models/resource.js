@@ -9,13 +9,21 @@ your own sanity's sake). You'll need to create different modules if you have
 endpoints that behave differently.
 */
 
-const Resource = (endpoint) => {
+const Resource = (endpoint, children_endpoint) => {
 
   // We're extracting result.data and returning it on success to avoid
   // result.data.data in our components
   function findAll() {
     return new Promise((resolve, reject) => {
       api.get(`/${endpoint}`)
+        .then((result) => resolve(result.data))
+        .catch((errors) => reject(errors))
+    })
+  }
+
+  function findAllChildren(parent_id) {
+    return new Promise((resolve, reject) => {
+      api.get(`/${endpoint}/${parent_id}/${children_endpoint}`)
         .then((result) => resolve(result.data))
         .catch((errors) => reject(errors))
     })
@@ -30,14 +38,6 @@ const Resource = (endpoint) => {
     })
   }
 
-  // // Same as above
-  // function findFromParent(id) {
-  //   return new Promise((resolve, reject) => {
-  //     api.get(`/${endpoint}/${id}`)
-  //       .then((result) => resolve(result.data))
-  //       .catch((errors) => reject(errors))
-  //   })
-  // }
 
   function create(data) {
     return api.post(`/${endpoint}`, data)
@@ -53,6 +53,7 @@ const Resource = (endpoint) => {
 
   return {
     findAll,
+    findAllChildren,
     find,
     create,
     update,

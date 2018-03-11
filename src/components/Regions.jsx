@@ -1,17 +1,17 @@
 import React from 'react'
-
 import Resource from '../models/resource'
 import Cities from './Cities'
 
 const RegionsList = Resource('regions')
-
 
 class Regions extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
       regions: [],
-      selected_id: 0,
+      selected_id: [],
+      parent_id: 0,
+      loading: false,
       errors: null
     }
   }
@@ -22,18 +22,33 @@ class Regions extends React.Component {
       .catch((errors) => this.setState({ errors: errors }))
   }
 
+  loadChildren = (ids_array, parent_id) => {
+    if(this.state.loading){
+      this.setState({ loading: false })
+      return
+    }
+      this.setState({ selected_id: ids_array, parent_id: parent_id, loading: true })    
+  }
+
+  listPresenter(){
+    const list = this.state.regions.map((region) => {
+      if (region.id === 1) {
+        return (<td><button className="achievement region" onClick={event => {
+          this.loadChildren(region.cities_ids, region.id);
+        }} >{region.name}</button></td>)
+      }
+    })
+    return list
+  }
+
   render() {
     return (
 
       <tbody>
-      {this.state.regions.map((region) => (
-        (region.country_id === this.props.parent) &&
-          <td><button className="achievement" onClick={event => {
-            this.props.showChildren(this, region);
-          }} >{region.name}</button>
-
-          <Cities parent={this.state.selected_id} showChildren={this.props.showChildren}/></td>
-      ))}
+        <div>
+          {this.listPresenter()}
+        </div>
+        {this.state.loading && <Cities cities={this.state.selected_id} parent_id={this.state.parent_id}/>}
       </tbody>
     )
   }

@@ -28,7 +28,7 @@ class Districts extends React.Component {
 
     if(this.state.loading) {
       let districtsArray = []
-      console.log('dis to display: ', this.props.districtsToDisplay)
+
       let promises = this.props.districtsToDisplay.map(id => {
       return DistrictsList.find(id)
           .then((result) =>{
