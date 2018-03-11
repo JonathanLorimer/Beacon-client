@@ -12,36 +12,54 @@ class Districts extends React.Component {
     super(props)
     this.state = {
       districts: [],
-      selected_id: 0,
-      showDetails: false,
-      errors: null
+      selected_id: [],
+      errors: null,
+      loading: true
     }
   }
 
-  componentWillMount() {
-    DistrictsList.findAll() // continentstore does the API fetching!
-      .then((result) => this.setState({ districts: result.data, errors: null }))
-      .catch((errors) => this.setState({ errors: errors }))
-  }
+  // componentWillMount() {
+  //   DistrictsList.findAll()
+  //     .then((result) => this.setState({ districts: result.data, errors: null }))
+  //     .catch((errors) => this.setState({ errors: errors }))
+  // }
 
-  showChildren = (parent) => {
-    this.setState({ selected_id: parent.id })
-  }
+  componentDidUpdate() {
+
+    if(this.state.loading) {
+      let districtsArray = []
+      console.log('dis to display: ', this.props.districtsToDisplay)
+      let promises = this.props.districtsToDisplay.map(id => {
+      return DistrictsList.find(id)
+          .then((result) =>{
+            // console.log(result)
+            districtsArray.push(result)
+            return districtsArray
+          }).catch((errors) => this.setState({ errors: errors }))              
+        })
+
+        Promise.all(promises).then((result => {
+          console.log('result: ', result)
+          this.setState({ districts: result, errors: null, loading: false })
+        }))
+      }      
+    }
+
+  
 
   render() {
     return (
 
+      <tbody>
+        {this.state.districts.map((district) => (
+          (district.neighbourhood_id === this.props.parent) &&
+            <td><button className="achievement" onClick={event => {
+              this.props.showChildren(this, district);
+            }} >{district.name}</button>
 
-            <tbody>
-              {this.state.districts.map((district, index) => (
-                (district.neighbourhood_id === this.props.parent) ?
-                  <td><button className="achievement" onClick={event => {
-                    this.showChildren(district);
-                  }} >{district.name}</button>
-                    <Locations parent={this.state.selected_id} /></td> :
-                  <td> no Locations </td>
-              ))}
-            </tbody>
+            </td>
+        ))}
+      </tbody>
     )
   }
 }

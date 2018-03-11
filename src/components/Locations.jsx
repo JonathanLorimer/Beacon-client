@@ -13,14 +13,13 @@ class Locations extends React.Component {
     super(props)
     this.state = {
       locations: [],
-      selectedLocations: {},
-      showDetails: false,
+      selected_id: 0,
       errors: null
     }
   }
 
   componentWillMount() {
-    LocationsList.findAll() // continentstore does the API fetching!
+    LocationsList.findAll()
       .then((result) => this.setState({ locations: result.data, errors: null }))
       .catch((errors) => this.setState({ errors: errors }))
   }
@@ -28,11 +27,11 @@ class Locations extends React.Component {
   render() {
     return (
 
-            <tbody>
-              {this.state.locations.map((location, index) => (
-                (location.district_id === this.props.parent) && <td><button className="achievement">{location.name}</button></td>
-              ))}           
-            </tbody>
+      <tbody>
+        {/* {this.state.locations.map((location) => (
+          (location.district_id === this.props.parent) && <td><button className="achievement">{location.name}</button></td>
+        ))}            */}
+      </tbody>
     )
   }
 }

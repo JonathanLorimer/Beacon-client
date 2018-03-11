@@ -30,6 +30,15 @@ const Resource = (endpoint) => {
     })
   }
 
+  // // Same as above
+  // function findFromParent(id) {
+  //   return new Promise((resolve, reject) => {
+  //     api.get(`/${endpoint}/${id}`)
+  //       .then((result) => resolve(result.data))
+  //       .catch((errors) => reject(errors))
+  //   })
+  // }
+
   function create(data) {
     return api.post(`/${endpoint}`, data)
   }
