@@ -10,6 +10,8 @@ class Neighbourhoods extends React.Component {
     this.state = {
       neighbourhoods: [],
       selected_id: [],
+      parent_id: 0,
+      loading: false,
       errors: null
     }
   }
@@ -43,9 +45,10 @@ class Neighbourhoods extends React.Component {
     return (
 
       <tbody>
-        <td>
+        <div>
           {this.listPresenter()}
-        </td>
+        </div>
+        {this.state.loading && <Districts districts={this.state.selected_id} parent_id={this.state.parent_id} />}
       </tbody>
     )
   }
