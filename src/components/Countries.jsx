@@ -14,35 +14,30 @@ class Countries extends React.Component {
     this.state = {
       countries: [],
       selected_id: 0,
-      showDetails: false,
       errors: null
     }
   }
 
   componentWillMount() {
-    CountriesList.findAll() // continentstore does the API fetching!
+    CountriesList.findAll()
       .then((result) => this.setState({ countries: result.data, errors: null }))
       .catch((errors) => this.setState({ errors: errors }))
   }
 
-  showChildren = (parent) => {
-    this.setState({ selected_id: parent.id })
-  }
 
   render() {
     return (
 
+      <tbody>
+        {this.state.countries.map((country) => (
+          (country.continent_id === this.props.parent) &&                
+          <td><button className="achievement" onClick ={event => {
+            this.props.showChildren(this, country);
+          }} >{country.name}</button>
 
-            <tbody>
-              {this.state.countries.map((country, index) => (
-                (country.continent_id === this.props.parent) ?                
-                <td><button className="achievement" onClick ={event => {
-                  this.showChildren(country);
-                }} >{country.name}</button>
-                <Regions parent={this.state.selected_id}/></td> :
-                  <td> no regions </td>
-                ))}
-            </tbody>
+          <Regions parent={this.state.selected_id} showChildren={this.props.showChildren}/></td>
+          ))}
+      </tbody>
     )
   }
 }

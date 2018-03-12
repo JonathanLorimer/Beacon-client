@@ -14,7 +14,7 @@ img {
 .achievement {
   display: inline-block;
   position: relative;
-  height: 33px;
+  height: 100px;
   line-height: 33px;
   padding: 0 15px;
   font-size: 15px;
@@ -26,4 +26,12 @@ img {
   outline: 0;
   -webkit-box-shadow: 0 2px 1px rgba(0, 0, 0, 0.25);
   box-shadow: 0 2px 1px rgba(0, 0, 0, 0.25);
+
+
+}
+
+.region {
+  width: 500px;
+  font-size: 30px;
+  color: rgb(255, 0, 0);
 }
