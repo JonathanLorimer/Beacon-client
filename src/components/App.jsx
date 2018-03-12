@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { Route, Switch } from 'react-router-dom'
 import { Grid } from 'react-bootstrap'
 
@@ -16,18 +16,42 @@ ends up inside <Grid> is determined by the current browser URL. See
 https://reacttraining.com/react-router/web/example/basic for more details.
 */
 
-const App = (props) => (
-  <div>
-    <TopNav />
-    <Grid>
-      <Switch>
-        <Route path="/" exact component={Dashboard} />
-        <Route path="/userlogin" component={Userlogin} />
-        <Route path="/achievements" component={Regions} />
-        <Route path="/diary" component={Diary} />
-      </Switch>
-    </Grid>
-  </div>
-)
+
+class App extends Component {
+ constructor(props){
+   super(props)
+
+   this.state = {
+     is_login: false
+   }
+ }
+
+ handleLogin = () => {
+    this.setState({is_login: true})
+ }
+
+ render() {
+
+  // if (this.state.is_login){
+  //       return <Redirect to='/userlogin'/>
+  //     }
+
+   return(
+     <div>
+       <TopNav />
+       <Grid>
+         <Switch>
+           <Route path="/" exact component={Dashboard} />
+           <Route path="/userlogin" render={()=>(<Userlogin onLogin={this.handleLogin}/>)} />
+           <Route path="/achievements" render={(props)=>
+                    <Regions{...this.props} auth={this.state.is_login}/>} />
+           <Route path="/diary" render={(props)=>
+                    <Diary{...this.props} auth={this.state.is_login}/>} />
+         </Switch>
+       </Grid>
+     </div>
+   )
+ }
+}
 
 export default App

@@ -13,6 +13,7 @@ class Userlogin extends React.Component {
     };
   }
 
+
    postSession(event) {
     event.preventDefault()
     fetch('http://localhost:3000/sessions',
@@ -28,9 +29,11 @@ class Userlogin extends React.Component {
       .then((response) => response.json())
       .then((data) => {console.log(data);
         this.setState({ username: data.username, redirect: true })
+        this.props.onLogin()
       })
       .catch((error) => {console.log("Error in the Post Session fetch: ", error)})
    }
+
 
    render () {
 

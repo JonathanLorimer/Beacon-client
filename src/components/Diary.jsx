@@ -1,5 +1,6 @@
 import React from 'react'
 import { Row, Col, PageHeader, Table } from 'react-bootstrap'
+import { Route, Redirect, Switch, Link } from 'react-router-dom'
 
 // Client-side model
 import Resource from '../models/resource'
@@ -11,6 +12,7 @@ class Diary extends React.Component {
     this.state = {
       clients: [],
       errors: null
+
     }
   }
 
@@ -21,6 +23,7 @@ class Diary extends React.Component {
   }
 
   render() {
+    if(this.props.auth){
     return (
       <Row>
         <Col xs={12}>
@@ -49,7 +52,10 @@ class Diary extends React.Component {
           </Table>
         </Col>
       </Row>
-    )
+    )}
+    else{
+       return <Redirect to='/userlogin'/>
+    }
   }
 }
 
