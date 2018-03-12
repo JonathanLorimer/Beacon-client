@@ -2,61 +2,16 @@ import React from 'react'
 import { Row, Col, PageHeader, Table } from 'react-bootstrap'
 import { Route, Redirect, Switch, Link } from 'react-router-dom'
 import Resource from '../models/resource'
-
-const users = Resource("sessions")
+const user = Resource("sessions")
 
 class Userlogin extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: "",
-
+      username:"",
+      redirect: false
     };
   }
-
-
-//    checkLogin(data) {
-//     users.create(data)
-
-//       .then((result) => this.setState({
-//         username:result.data.username }))
-//       .catch((errors) => this.setState({ errors: errors }))
-//    }
-
-
-
-
-//   render(){
-
-//     const onSubmit = e => {
-//       e.preventDefault();
-//       let email = e.target.email.value;
-//       let password = e.target.password.value;
-//       this.checkLogin({email, password})
-//     }
-
-//     return (
-//       <div>
-//         <div> Logged in as {this.state.username} </div>
-//           <form className="form" onSubmit={onSubmit}>
-
-//               <label>
-//                 email:
-//                 <input type="text" name="email" />
-//               </label>
-//               <label>
-//                 password:
-//                 <input type="text" name="password" />
-//               </label>
-//               <input type="submit" value="Submit" />
-//          </form>
-//       </div>
-
-//     );
-
-//   }
-
-// }
 
    postSession(event) {
     event.preventDefault()
@@ -70,17 +25,24 @@ class Userlogin extends React.Component {
       body: new FormData(document.getElementById("login-form"))
       }
     )
-      .then((response) => {console.log("Post Session Response: ", response)})
+      .then((response) => response.json())
+      .then((data) => {console.log(data);
+        this.setState({ username: data.username, redirect: true })
+      })
       .catch((error) => {console.log("Error in the Post Session fetch: ", error)})
    }
 
    render () {
 
+
+      if (this.state.redirect){
+        return <Redirect to='/achievements'/>
+      }
+
       return(
 
         <div>
           <h1>Login</h1>
-          <div>Log in as {this.state.username}</div>
           <form id="login-form" onSubmit={(event) => this.postSession(event)}>
             <label htmlFor="email">email </label><br/>
             <input type="text" id="email"  name="email"/><br/>
