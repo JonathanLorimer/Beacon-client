@@ -1,6 +1,6 @@
 import React from 'react'
 import Resource from '../models/resource'
-import Districts from './Districts'
+import Locations from './Locations'
 
 const neighbourhoodsList = Resource('cities', 'neighbourhoods')
 
@@ -34,7 +34,7 @@ class Neighbourhoods extends React.Component {
     const list = this.state.neighbourhoods.map((neighbourhood) => {
       if (neighbourhood.city_id === this.props.parent_id) {
         return (<td><button className="achievement neighbourhood" onClick={event => {
-          this.loadChildren(neighbourhood.districts_ids, neighbourhood.id);
+          this.loadChildren(neighbourhood.locations_ids, neighbourhood.id);
         }} >{neighbourhood.name}</button></td>)
       }
     })
@@ -48,7 +48,7 @@ class Neighbourhoods extends React.Component {
         <div>
           {this.listPresenter()}
         </div>
-        {this.state.loading && <Districts districts={this.state.selected_id} parent_id={this.state.parent_id} />}
+        {this.state.loading && <Locations locations={this.state.selected_id} parent_id={this.state.parent_id} />}
       </tbody>
     )
   }
