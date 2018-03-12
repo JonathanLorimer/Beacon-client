@@ -1,9 +1,11 @@
 import React from 'react'
-import { Row, Col, PageHeader, Table } from 'react-bootstrap'
-import { Route, Redirect, Switch, Link } from 'react-router-dom'
+
+// import { Row, Col, PageHeader, Table } from 'react-bootstrap'
+// import { Route, Switch, Link } from 'react-router-dom'
+
 
 // Product details modal dialog
-import ProductDetails from './ProductDetails'
+// import ProductDetails from './ProductDetails'
 import Countries from './Countries'
 
 
@@ -19,7 +21,6 @@ class Achievements extends React.Component {
     this.state = {
       continents: [],
       selected_id: 0,
-      showDetails: false,
       errors: null
     }
   }
@@ -30,49 +31,24 @@ class Achievements extends React.Component {
       .catch((errors) => this.setState({ errors: errors }))
   }
 
-  showChildren = (parent) => {
-    this.setState({ selected_id: parent.id })
+  // That is the children
+  showChildren = (that, parent) => {
+    that.setState({ selected_id: parent.id })
   }
 
   render() {
     return (
-      <Row>
-        <Col xs={12}>
 
-          <PageHeader>
-            continents
-          </PageHeader>
+        <tbody>
+          {this.state.continents.map((continent) => (
+            <td><button name="this continent" className="achievement" onClick={event => {
+              this.showChildren(this, continent);
+            }}>{continent.name}</button>
 
-          <Table>
-            <thead>
-              <tr>
-                <th>Continents</th>
-                <th>Countries</th>
-                <th>Regions</th>
-                <th>Cities</th>
-                <th>Neighbourhoods</th>
-                <th>Districts</th>
-                <th>Locations</th>
-              </tr>
-            </thead>
+            <Countries parent={this.state.selected_id} showChildren={this.showChildren}/></td>
+          ))}
+        </tbody>
 
-            <tbody>
-              {this.state.continents.map((continent, index) => (
-                <td><button name="this continent" className="achievement" onClick={event => {
-                  this.showChildren(continent);
-                }}>{continent.name}</button>
-                <Countries parent={this.state.selected_id}/></td>
-              ))}
-            </tbody>
-          </Table>
-
-          {/* If the URL has an id at the end, we show the details dialog */}
-          <Switch>
-            <Route path="/continents/:id" component={ProductDetails} />
-          </Switch>
-
-        </Col>
-      </Row>
     )
   }
 }

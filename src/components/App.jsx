@@ -4,7 +4,8 @@ import { Grid } from 'react-bootstrap'
 
 import TopNav from './TopNav'
 import Diary from './Diary'
-import Achievements from './Achievements'
+// import Achievements from './Achievements'
+import Regions from './Regions'
 import Dashboard from './Dashboard'
 import Userlogin from './Userlogin'
 
@@ -22,7 +23,7 @@ const App = (props) => (
       <Switch>
         <Route path="/" exact component={Dashboard} />
         <Route path="/userlogin" component={Userlogin} />
-        <Route path="/achievements" component={Achievements} />
+        <Route path="/achievements" component={Regions} />
         <Route path="/diary" component={Diary} />
       </Switch>
     </Grid>
