@@ -1,6 +1,6 @@
 import React from 'react'
 import { Row, Col, PageHeader, Table } from 'react-bootstrap'
-import { Route, Switch, Link } from 'react-router-dom'
+import { Route, Redirect, Switch, Link } from 'react-router-dom'
 
 // Product details modal dialog
 import ProductDetails from './ProductDetails'
@@ -57,11 +57,11 @@ class Achievements extends React.Component {
             </thead>
 
             <tbody>
-              {this.state.continents.map((continent, index) => (              
+              {this.state.continents.map((continent, index) => (
                 <td><button name="this continent" className="achievement" onClick={event => {
                   this.showChildren(continent);
                 }}>{continent.name}</button>
-                <Countries parent={this.state.selected_id}/></td>                  
+                <Countries parent={this.state.selected_id}/></td>
               ))}
             </tbody>
           </Table>

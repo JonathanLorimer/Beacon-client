@@ -6,6 +6,7 @@ import TopNav from './TopNav'
 import Diary from './Diary'
 import Achievements from './Achievements'
 import Dashboard from './Dashboard'
+import Userlogin from './Userlogin'
 
 /*
 This is the main app component. Note that we're using react-router to change
@@ -20,6 +21,7 @@ const App = (props) => (
     <Grid>
       <Switch>
         <Route path="/" exact component={Dashboard} />
+        <Route path="/userlogin" component={Userlogin} />
         <Route path="/achievements" component={Achievements} />
         <Route path="/diary" component={Diary} />
       </Switch>
