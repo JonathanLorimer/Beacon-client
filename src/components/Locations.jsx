@@ -1,12 +1,8 @@
 import React from 'react'
-
-
 // Client-side model
 import Resource from '../models/resource'
 
-
-const LocationsList = Resource('districts', 'locations')
-
+const LocationsList = Resource('neighbourhoods', 'locations')
 
 class Locations extends React.Component {
   constructor(props) {
@@ -36,7 +32,7 @@ class Locations extends React.Component {
 
   listPresenter() {
     const list = this.state.locations.map((location) => {
-      if (location.district_id === this.props.parent_id) {
+      if (location.neighbourhood_id === this.props.parent_id) {
         return (<td><button className="achievement location">{location.name}</button></td>)
       }
     })
