@@ -10,12 +10,14 @@ class Userlogin extends React.Component {
     this.state = {
       username:"",
       redirect: false
+
     };
   }
 
 
    postSession(event) {
     event.preventDefault()
+    let self = this;
     fetch('http://localhost:3000/sessions',
       {
         header: {
@@ -28,8 +30,11 @@ class Userlogin extends React.Component {
     )
       .then((response) => response.json())
       .then((data) => {console.log(data);
+
+        this.props.onLogin(data)
+        console.log(self.props)
         this.setState({ username: data.username, redirect: true })
-        this.props.onLogin()
+        // self.props.history.push("/achievements")
       })
       .catch((error) => {console.log("Error in the Post Session fetch: ", error)})
    }

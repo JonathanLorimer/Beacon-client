@@ -22,31 +22,34 @@ class App extends Component {
    super(props)
 
    this.state = {
-     is_login: false
+     is_login: false,
+     currentUser: null
    }
  }
 
- handleLogin = () => {
-    this.setState({is_login: true})
+ handleLogin = (data) => {
+    this.setState({is_login: true, currentUser: data})
+ }
+
+ handleLogout = () => {
+   this.setState({is_login: false})
  }
 
  render() {
 
-  // if (this.state.is_login){
-  //       return <Redirect to='/userlogin'/>
-  //     }
 
    return(
      <div>
-       <TopNav />
+       <TopNav auth={this.state.is_login} currentUser={this.state.currentUser} onLogout={this.handleLogout} />
        <Grid>
          <Switch>
            <Route path="/" exact component={Dashboard} />
-           <Route path="/userlogin" render={()=>(<Userlogin onLogin={this.handleLogin}/>)} />
+           <Route path="/userlogin" render={()=>
+                   <Userlogin onLogin={this.handleLogin} auth={this.state.is_login} currentUser={this.state.currentUser}/>} />
            <Route path="/achievements" render={(props)=>
-                    <Regions{...this.props} auth={this.state.is_login}/>} />
+                    <Regions{...this.props} auth={this.state.is_login} currentUser={this.state.currentUser}/>} />
            <Route path="/diary" render={(props)=>
-                    <Diary{...this.props} auth={this.state.is_login}/>} />
+                    <Diary{...this.props} auth={this.state.is_login} currentUser={this.state.currentUser}/>} />
          </Switch>
        </Grid>
      </div>

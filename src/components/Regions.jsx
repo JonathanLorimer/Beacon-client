@@ -1,7 +1,7 @@
 import React from 'react'
 import Resource from '../models/resource'
 import Cities from './Cities'
-
+import { Route, Redirect, Switch, Link } from 'react-router-dom'
 const RegionsList = Resource('regions')
 
 class Regions extends React.Component {
@@ -43,16 +43,19 @@ class Regions extends React.Component {
   }
 
   render() {
+    if(this.props.auth && this.props.currentUser.data!=="failed"){
+      return (
 
-    return (
-
-      <tbody>
-        <div>
-          {this.listPresenter()}
-        </div>
-        {this.state.loading && <Cities cities={this.state.selected_id} parent_id={this.state.parent_id}/>}
-      </tbody>
-    )
+        <tbody>
+          <div>
+            {this.listPresenter()}
+          </div>
+          {this.state.loading && <Cities cities={this.state.selected_id} parent_id={this.state.parent_id}/>}
+        </tbody>
+      )
+    } else {
+       return <Redirect to='/userlogin'/>
+    }
   }
 }
 
