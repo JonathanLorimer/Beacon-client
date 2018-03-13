@@ -1,13 +1,17 @@
 import React , { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { Navbar, Nav, NavItem } from 'react-bootstrap'
+import Resource from '../models/resource'
 
 class TopNav extends Component {
   constructor(props){
    super(props)
   }
 
+
+
 render(){
+
 
     return (
       <Navbar>
@@ -35,4 +39,10 @@ render(){
     )
   }
 }
+
+
+Coordinates.create({ latitude: "43.6425662", longitude: "-79.3892455" })
+
 export default TopNav
+
+
