@@ -33,9 +33,9 @@ class Cities extends React.Component {
   listPresenter() {
     const list = this.state.cities.map((city) => {
       if (city.region_id === this.props.parent_id) {
-        return (<td><button className="achievement city" onClick={event => {
+        return (<div><button className="achievement city" onClick={event => {
           this.loadChildren(city.neighbourhoods_ids, city.id);
-        }} >{city.name}</button></td>)
+        }} >{city.name}</button></div>)
       }
     })
     return list
@@ -44,12 +44,11 @@ class Cities extends React.Component {
   render() {
     return (
 
-      <tbody>
+      <div>
         <div>
-          {this.listPresenter()}
         </div>
         {this.state.loading && <Neighbouroods neighbouroods={this.state.selected_id} parent_id={this.state.parent_id} />}
-      </tbody>
+      </div>
     )
   }
 }

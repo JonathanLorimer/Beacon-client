@@ -33,7 +33,7 @@ class Locations extends React.Component {
   listPresenter() {
     const list = this.state.locations.map((location) => {
       if (location.neighbourhood_id === this.props.parent_id) {
-        return (<td><button className="achievement location">{location.name}</button></td>)
+        return (<div><button className="achievement location">{location.name}</button></div>)
       }
     })
     return list
@@ -42,11 +42,11 @@ class Locations extends React.Component {
   render() {
     return (
 
-      <tbody>
+      <div>
         <div>
           {this.listPresenter()}
         </div>
-      </tbody>
+      </div>
     )
   }
 }

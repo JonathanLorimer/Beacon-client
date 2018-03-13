@@ -1,8 +1,10 @@
 import React from 'react'
 import Resource from '../models/resource'
 import Cities from './Cities'
+const $ = require('jquery')
 
 const RegionsList = Resource('regions')
+const CitiesList = Resource('regions', 'cities')
 
 class Regions extends React.Component {
   constructor(props) {
@@ -12,7 +14,8 @@ class Regions extends React.Component {
       selected_id: [],
       parent_id: 0,
       loading: false,
-      errors: null
+      errors: null,
+      cities: []
     }
   }
 
@@ -27,15 +30,27 @@ class Regions extends React.Component {
       this.setState({ loading: false })
       return
     }
-      this.setState({ selected_id: ids_array, parent_id: parent_id, loading: true })    
+    CitiesList.findAllChildren(this.state.parent_id)
+      .then((result) => this.setState({ cities: result.data, errors: null }))
+      .catch((errors) => this.setState({ errors: errors }))
+
+    this.setState({ selected_id: ids_array, parent_id: parent_id, loading: true })    
   }
 
   listPresenter(){
     const list = this.state.regions.map((region) => {
-      if (region.id === 1) {
-        return (<td><button className="achievement region" onClick={event => {
+      if (region.id === this.state.parent_id) {
+
+        return (<div className={`region_id_${region.id}`}><button className="achievement region" onClick={event => {
           this.loadChildren(region.cities_ids, region.id);
-        }} >{region.name}</button></td>)
+        }} >{region.name}</button>{this.state.loading && <Cities cities={this.state.selected_id} parent_id={this.state.parent_id}/>}</div>)
+
+      } else {
+
+        return (<div className={`region_id_${region.id}`}><button className="achievement region" onClick={event => {
+          this.loadChildren(region.cities_ids, region.id);
+        }} >{region.name}</button></div>)
+
       }
     })
     return list
@@ -43,13 +58,15 @@ class Regions extends React.Component {
 
   render() {
     return (
-
-      <tbody>
+      <div>
         <div>
           {this.listPresenter()}
         </div>
+        <div>
+          neighbourhoods
+        </div>
         {this.state.loading && <Cities cities={this.state.selected_id} parent_id={this.state.parent_id}/>}
-      </tbody>
+      </div>
     )
   }
 }

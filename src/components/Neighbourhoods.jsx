@@ -33,9 +33,9 @@ class Neighbourhoods extends React.Component {
   listPresenter() {
     const list = this.state.neighbourhoods.map((neighbourhood) => {
       if (neighbourhood.city_id === this.props.parent_id) {
-        return (<td><button className="achievement neighbourhood" onClick={event => {
+        return (<div><button className="achievement neighbourhood" onClick={event => {
           this.loadChildren(neighbourhood.locations_ids, neighbourhood.id);
-        }} >{neighbourhood.name}</button></td>)
+        }} >{neighbourhood.name}</button></div>)
       }
     })
     return list
@@ -44,12 +44,12 @@ class Neighbourhoods extends React.Component {
   render() {
     return (
 
-      <tbody>
+      <div>
         <div>
           {this.listPresenter()}
         </div>
         {this.state.loading && <Locations locations={this.state.selected_id} parent_id={this.state.parent_id} />}
-      </tbody>
+      </div>
     )
   }
 }
