@@ -17,9 +17,10 @@ class Locations extends React.Component {
   }
 
   componentWillMount() {
-    LocationsList.findAllChildren(this.props.parent_id)
-      .then((result) => this.setState({ locations: result.data, errors: null }))
-      .catch((errors) => this.setState({ errors: errors }))
+    console.log('component will mount')
+    // LocationsList.findAllChildren(this.props.parent_id)
+    //   .then((result) => this.setState({ locations: result.data, errors: null }))
+    //   .catch((errors) => this.setState({ errors: errors }))
   }
 
   // loadChildren = (ids_array, parent_id) => {
@@ -31,10 +32,9 @@ class Locations extends React.Component {
   // }
 
   listPresenter() {
-    const list = this.state.locations.map((location) => {
-      if (location.neighbourhood_id === this.props.parent_id) {
+    const list = this.props.locations.map((location) => {
+      console.log('mapping like crzy')
         return (<div><button className="achievement location">{location.name}</button></div>)
-      }
     })
     return list
   }
@@ -43,9 +43,7 @@ class Locations extends React.Component {
     return (
 
       <div>
-        <div>
-          {this.listPresenter()}
-        </div>
+        {this.listPresenter()}
       </div>
     )
   }

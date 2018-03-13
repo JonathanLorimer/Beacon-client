@@ -2,7 +2,8 @@ import React from 'react'
 import Resource from '../models/resource'
 import Neighbouroods from './Neighbourhoods'
 
-const citiesList = Resource('regions', 'cities')
+const CitiesList = Resource('regions', 'cities')
+const NeighbourhoodsList = Resource('cities', 'neighbourhoods')
 
 class Cities extends React.Component {
   constructor(props) {
@@ -17,7 +18,7 @@ class Cities extends React.Component {
   }
 
   componentWillMount() {
-    citiesList.findAllChildren(this.props.parent_id)
+    CitiesList.findAllChildren(this.props.parent_id)
       .then((result) => this.setState({ cities: result.data, errors: null }))
       .catch((errors) => this.setState({ errors: errors }))
   }
@@ -34,7 +35,11 @@ class Cities extends React.Component {
     const list = this.state.cities.map((city) => {
       if (city.region_id === this.props.parent_id) {
         return (<div><button className="achievement city" onClick={event => {
-          this.loadChildren(city.neighbourhoods_ids, city.id);
+          // this.loadChildren(city.neighbourhoods_ids, city.id);
+          NeighbourhoodsList.findAllChildren(city.id)
+            .then((result) => {console.log(result.data)
+               this.props.getCityarray(result.data)})
+            .catch((errors) => this.setState({ errors: errors }))
         }} >{city.name}</button></div>)
       }
     })
@@ -45,9 +50,7 @@ class Cities extends React.Component {
     return (
 
       <div>
-        <div>
-        </div>
-        {this.state.loading && <Neighbouroods neighbouroods={this.state.selected_id} parent_id={this.state.parent_id} />}
+        {this.listPresenter()}
       </div>
     )
   }

@@ -1,7 +1,6 @@
 import React from 'react'
 import Resource from '../models/resource'
 import Cities from './Cities'
-const $ = require('jquery')
 
 const RegionsList = Resource('regions')
 const CitiesList = Resource('regions', 'cities')
@@ -40,10 +39,9 @@ class Regions extends React.Component {
   listPresenter(){
     const list = this.state.regions.map((region) => {
       if (region.id === this.state.parent_id) {
-
         return (<div className={`region_id_${region.id}`}><button className="achievement region" onClick={event => {
           this.loadChildren(region.cities_ids, region.id);
-        }} >{region.name}</button>{this.state.loading && <Cities cities={this.state.selected_id} parent_id={this.state.parent_id}/>}</div>)
+        }} >{region.name}</button>{this.state.loading && <Cities getCityarray={this.props.getCityarray} cities={this.state.selected_id} parent_id={this.state.parent_id}/>}</div>)
 
       } else {
 
@@ -59,13 +57,7 @@ class Regions extends React.Component {
   render() {
     return (
       <div>
-        <div>
-          {this.listPresenter()}
-        </div>
-        <div>
-          neighbourhoods
-        </div>
-        {this.state.loading && <Cities cities={this.state.selected_id} parent_id={this.state.parent_id}/>}
+        {this.listPresenter()}
       </div>
     )
   }
