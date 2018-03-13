@@ -22,7 +22,7 @@ class App extends Component {
    super(props)
 
    this.state = {
-     is_login: false,
+     is_login: true,
      currentUser: null
    }
  }
