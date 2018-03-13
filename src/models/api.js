@@ -17,7 +17,8 @@ const server = axios.create({
   baseURL: BASEURL,
   timeout: 10000,
   headers: {
-    'Content-Type': 'application/vnd.api+json'
+    'Content-Type': 'application/vnd.api+json',
+    'Accept': 'application/json'
   }
 })
 
