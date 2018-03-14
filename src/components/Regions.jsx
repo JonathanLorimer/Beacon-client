@@ -1,7 +1,7 @@
 import React from 'react'
 import Resource from '../models/resource'
 import Cities from './Cities'
-
+import { Route, Redirect, Switch, Link } from 'react-router-dom'
 const RegionsList = Resource('regions')
 
 class Regions extends React.Component {
@@ -17,7 +17,8 @@ class Regions extends React.Component {
   }
 
   componentWillMount() {
-    RegionsList.findAll() 
+
+    RegionsList.findAll()
       .then((result) => this.setState({ regions: result.data, errors: null }))
       .catch((errors) => this.setState({ errors: errors }))
   }
@@ -27,7 +28,7 @@ class Regions extends React.Component {
       this.setState({ loading: false })
       return
     }
-      this.setState({ selected_id: ids_array, parent_id: parent_id, loading: true })    
+      this.setState({ selected_id: ids_array, parent_id: parent_id, loading: true })
   }
 
   listPresenter(){
@@ -42,15 +43,19 @@ class Regions extends React.Component {
   }
 
   render() {
-    return (
+    if(this.props.auth && this.props.currentUser.data!=="failed"){
+      return (
 
-      <tbody>
-        <div>
-          {this.listPresenter()}
-        </div>
-        {this.state.loading && <Cities cities={this.state.selected_id} parent_id={this.state.parent_id}/>}
-      </tbody>
-    )
+        <tbody>
+          <div>
+            {this.listPresenter()}
+          </div>
+          {this.state.loading && <Cities cities={this.state.selected_id} parent_id={this.state.parent_id}/>}
+        </tbody>
+      )
+    } else {
+       return <Redirect to='/userlogin'/>
+    }
   }
 }
 
