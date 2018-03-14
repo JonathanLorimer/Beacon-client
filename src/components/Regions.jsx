@@ -1,7 +1,7 @@
 import React from 'react'
 import Resource from '../models/resource'
 import Cities from './Cities'
-
+import { Route, Redirect, Switch, Link } from 'react-router-dom'
 const RegionsList = Resource('regions')
 const CitiesList = Resource('regions', 'cities')
 
@@ -17,7 +17,8 @@ class Regions extends React.Component {
   }
 
   componentWillMount() {
-    RegionsList.findAll() 
+
+    RegionsList.findAll()
       .then((result) => this.setState({ regions: result.data, errors: null }))
       .catch((errors) => this.setState({ errors: errors }))
   }

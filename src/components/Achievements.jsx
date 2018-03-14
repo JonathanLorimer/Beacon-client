@@ -13,7 +13,7 @@ class Achievements extends React.Component {
  }
 
 getCityId = (city_id) => {
-  console.log(city_id, " city id in Achievements")
+  console.log('city id in achievements', city_id)
   this.setState({city_id: city_id})
 }
 

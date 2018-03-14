@@ -9,7 +9,7 @@ class Neighbourhoods extends React.Component {
     super(props)
     this.state = {
       neighbourhood_id: 0,
-      loading: false,
+      loading: true,
       errors: null,
       neighbourhoods: [],
       city_id: 0
@@ -17,9 +17,9 @@ class Neighbourhoods extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.city_id !== this.state.city_id){
-      NeighbourhoodsList.findAllChildren(this.props.city_id)
-        .then((result) => this.setState({ neighbourhoods: result.data, errors: null }))
+    if (nextProps.city_id !== this.state.city_id){      
+      NeighbourhoodsList.findAllChildren(nextProps.city_id)
+        .then((result) => this.setState({ neighbourhoods: result.data, errors: null, city_id: this.props.city_id }))
         .catch((errors) => this.setState({ errors: errors }))
     }
   }

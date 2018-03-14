@@ -14,17 +14,17 @@ class Cities extends React.Component {
   }
 
   componentWillMount() {
-    CitiesList.findAllChildren(this.props.region_id)
-      .then((result) => this.setState({ cities: result.data, errors: null }))
-      .catch((errors) => this.setState({ errors: errors }))
+      CitiesList.findAllChildren(this.props.region_id)
+        .then((result) => this.setState({ cities: result.data, errors: null }))
+        .catch((errors) => this.setState({ errors: errors }))
   }
 
   listPresenter() {
     const list = this.state.cities.map((city) => {
         return (
         <div>
-          <button className="achievement city" onClick={event => {console.log(city.id, " city id in Cities"); this.props.getCityId(city.id)}}>
-            {city.name}
+          <button className="achievement city" onClick={event => {this.props.getCityId(city.id)}}>
+          {city.name}
           </button>
         </div>)
     })
@@ -32,7 +32,6 @@ class Cities extends React.Component {
   }
 
   render() {
-
     return (
 
       <div>
