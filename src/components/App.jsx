@@ -23,7 +23,8 @@ class App extends Component {
 
    this.state = {
      is_login: true,
-     currentUser: null
+     currentUser: 'Romain',
+     currentUser_id: 2
    }
  }
 

@@ -15,7 +15,7 @@ render(){
         <Navbar.Header>
           <Navbar.Brand>
            <Link to='/'>Beacon</Link>
-            {Coordinates.create({latitude: "43.6425662", longitude: "-79.3892455" })}
+            
           </Navbar.Brand>
         </Navbar.Header>
 
@@ -38,4 +38,4 @@ render(){
   }
 }
 export default TopNav
-
+// { Coordinates.create({ latitude: "43.6425662", longitude: "-79.3892455" }) }
