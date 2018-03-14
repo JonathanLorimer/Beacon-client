@@ -10,11 +10,9 @@ class Regions extends React.Component {
     super(props)
     this.state = {
       regions: [],
-      selected_id: [],
-      parent_id: 0,
+      region_id: 0,
       loading: false,
-      errors: null,
-      cities: []
+      errors: null
     }
   }
 
@@ -24,31 +22,31 @@ class Regions extends React.Component {
       .catch((errors) => this.setState({ errors: errors }))
   }
 
-  loadChildren = (ids_array, parent_id) => {
+  loadChildren = (region_id) => {
     if(this.state.loading){
       this.setState({ loading: false })
       return
     }
-    CitiesList.findAllChildren(this.state.parent_id)
-      .then((result) => this.setState({ cities: result.data, errors: null }))
-      .catch((errors) => this.setState({ errors: errors }))
-
-    this.setState({ selected_id: ids_array, parent_id: parent_id, loading: true })    
+    this.setState({region_id: region_id, loading: true })    
   }
 
   listPresenter(){
     const list = this.state.regions.map((region) => {
-      if (region.id === this.state.parent_id) {
-        return (<div className={`region_id_${region.id}`}><button className="achievement region" onClick={event => {
-          this.loadChildren(region.cities_ids, region.id);
-        }} >{region.name}</button>{this.state.loading && <Cities getCityarray={this.props.getCityarray} cities={this.state.selected_id} parent_id={this.state.parent_id}/>}</div>)
-
+      if (region.id === this.state.region_id) {
+        return (
+        <div className={`region_id_${region.id}`}>
+          <button className="achievement region" onClick={event => {this.loadChildren(region.id)}}>
+            {region.name}
+          </button>
+          {this.state.loading && <Cities getCityId={this.props.getCityId} region_id={this.state.region_id}/>}
+        </div>)
       } else {
-
-        return (<div className={`region_id_${region.id}`}><button className="achievement region" onClick={event => {
-          this.loadChildren(region.cities_ids, region.id);
-        }} >{region.name}</button></div>)
-
+        return (
+        <div className={`region_id_${region.id}`}>
+          <button className="achievement region" onClick={event => {this.loadChildren( region.id)}}>
+            {region.name}
+          </button>
+        </div>)
       }
     })
     return list

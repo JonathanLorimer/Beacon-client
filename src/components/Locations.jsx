@@ -9,31 +9,19 @@ class Locations extends React.Component {
     super(props)
     this.state = {
       locations: [],
-      selected_id: 0,
-      parent_id: 0,
-      loading: false,
       errors: null
     }
   }
 
   componentWillMount() {
-    console.log('component will mount')
-    // LocationsList.findAllChildren(this.props.parent_id)
-    //   .then((result) => this.setState({ locations: result.data, errors: null }))
-    //   .catch((errors) => this.setState({ errors: errors }))
+    LocationsList.findAllChildren(this.props.neighbourhood_id)
+      .then((result) => this.setState({ locations: result.data, errors: null }))
+      .catch((errors) => this.setState({ errors: errors }))
   }
 
-  // loadChildren = (ids_array, parent_id) => {
-  //   if (this.state.loading) {
-  //     this.setState({ loading: false })
-  //     return
-  //   }
-  //   this.setState({ selected_id: ids_array, parent_id: parent_id, loading: true })
-  // }
-
+  // Presenter maps html over array of locations
   listPresenter() {
-    const list = this.props.locations.map((location) => {
-      console.log('mapping like crzy')
+    const list = this.state.locations.map((location) => {
         return (<div><button className="achievement location">{location.name}</button></div>)
     })
     return list
@@ -41,7 +29,6 @@ class Locations extends React.Component {
 
   render() {
     return (
-
       <div>
         {this.listPresenter()}
       </div>

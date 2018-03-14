@@ -3,52 +3,52 @@ import Resource from '../models/resource'
 import Locations from './Locations'
 
 const NeighbourhoodsList = Resource('cities', 'neighbourhoods')
-const LocationsList = Resource('neighbourhoods', 'locations')
 
 class Neighbourhoods extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      neighbourhoods: [],
-      locations: [],
-      selected_id: [],
-      parent_id: 0,
-      location_id: 0,
-      city_id: 1,
+      neighbourhood_id: 0,
       loading: false,
-      errors: null
+      errors: null,
+      neighbourhoods: [],
+      city_id: 0
     }
   }
 
-  componentWillMount() {
-    console.log()
-    NeighbourhoodsList.findAllChildren(this.props.city_id)
-      .then((result) => this.setState({ neighbourhoods: result.data, errors: null }))
-      .catch((errors) => this.setState({ errors: errors }))
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.city_id !== this.state.city_id){
+      NeighbourhoodsList.findAllChildren(this.props.city_id)
+        .then((result) => this.setState({ neighbourhoods: result.data, errors: null }))
+        .catch((errors) => this.setState({ errors: errors }))
+    }
   }
 
-  loadChildren = (parent_id) => {
+  loadChildren = (neighbourhood_id) => {
     if (this.state.loading) {
       this.setState({ loading: false })
       return
     }
-    LocationsList.findAllChildren(parent_id)
-      .then((result) => this.setState({ locations: result.data, errors: null }))
-      .catch((errors) => this.setState({ errors: errors }))
-
-    this.setState({ parent_id: parent_id, loading: true })
+    this.setState({neighbourhood_id: neighbourhood_id, loading: true})
   }
 
   listPresenter() {
-    const list = this.props.city_array.map((neighbourhood) => {
-      if (neighbourhood.id === this.state.parent_id) {
-        return (<div><button className="achievement neighbourhood" onClick={event => {
-          this.loadChildren(neighbourhood.id);
-        }} >{neighbourhood.name}</button>{this.state.loading && <Locations locations={this.state.locations} parent_id={this.state.parent_id} />}</div>)
+    const list = this.state.neighbourhoods.map((neighbourhood) => {
+      if (neighbourhood.id === this.state.neighbourhood_id) {
+        return (
+        <div>
+          <button className="achievement neighbourhood" onClick={event => {this.loadChildren(neighbourhood.id)}}>
+            {neighbourhood.name}
+          </button>
+          {this.state.loading && <Locations neighbourhood_id={this.state.neighbourhood_id}/>}
+        </div>)
       } else {
-          return (<div><button className="achievement neighbourhood" onClick={event => {
-            this.loadChildren(neighbourhood.id);
-          }} >{neighbourhood.name}</button></div>)
+          return (
+          <div>
+            <button className="achievement neighbourhood" onClick={event => {this.loadChildren(neighbourhood.id)}}>
+              {neighbourhood.name}
+            </button>
+          </div>)
       }
     })
     return list
