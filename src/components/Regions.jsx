@@ -23,12 +23,15 @@ class Regions extends React.Component {
       .catch((errors) => this.setState({ errors: errors }))
   }
 
-  loadChildren = (region_id) => {
+  loadChildren = (region_id, region) => {
     if(this.state.loading){
       this.setState({ loading: false })
       return
     }
-    this.setState({region_id: region_id, loading: true })    
+    this.setState({region_id: region_id, loading: true })
+    let lat = (region.least_lat + region.greatest_lat) / 2
+    let lng = (region.least_lng + region.least_lng) / 2
+    this.props.getMapCenter(lat, lng)    
   }
 
   listPresenter(){
@@ -36,7 +39,7 @@ class Regions extends React.Component {
       if (region.id === this.state.region_id) {
         return (
         <div className={`region_id_${region.id}`}>
-          <button className="achievement region" onClick={event => {this.loadChildren(region.id)}}>
+          <button className="achievement region" onClick={event => {this.loadChildren(region.id, region)}}>
             {region.name}
           </button>
           {this.state.loading && <Cities getCityId={this.props.getCityId} region_id={this.state.region_id}/>}
@@ -44,7 +47,7 @@ class Regions extends React.Component {
       } else {
         return (
         <div className={`region_id_${region.id}`}>
-          <button className="achievement region" onClick={event => {this.loadChildren( region.id)}}>
+          <button className="achievement region" onClick={event => {this.loadChildren(region.id, region)}}>
             {region.name}
           </button>
         </div>)
