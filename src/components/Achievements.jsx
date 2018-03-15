@@ -1,5 +1,4 @@
 import React from 'react'
-import Resource from '../models/resource'
 import Regions from './Regions'
 import Neighbourhoods from './Neighbourhoods'
 
@@ -20,10 +19,10 @@ getCityId = (city_id) => {
  render() {
    return (
     <div>
-      <div style={{float: 'left'}}>
+      <div className="container regioncontainer">
         <Regions getCityId={this.getCityId}/>
       </div>
-      <div style={{float: 'right'}}>
+      <div className="container neighbourhoodcontainer">
         <Neighbourhoods city_id={this.state.city_id}/>
       </div>
     </div>)

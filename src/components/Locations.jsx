@@ -22,7 +22,7 @@ class Locations extends React.Component {
   // Presenter maps html over array of locations
   listPresenter() {
     const list = this.state.locations.map((location) => {
-        return (<div><button className="achievement location">{location.name}</button></div>)
+        return (<div className="achievement location">{location.name}</div>)
     })
     return list
   }
