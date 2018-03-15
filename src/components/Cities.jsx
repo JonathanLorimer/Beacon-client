@@ -15,7 +15,10 @@ class Cities extends React.Component {
 
   componentWillMount() {
       CitiesList.findAllChildren(this.props.region_id)
-        .then((result) => this.setState({ cities: result.data, errors: null }))
+        .then((result) => {
+          this.setState({ cities: result.data, errors: null })
+          this.props.getCitiesMarker(result.data)
+        })
         .catch((errors) => this.setState({ errors: errors }))
   }
 
