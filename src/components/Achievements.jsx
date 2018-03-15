@@ -10,7 +10,9 @@ class Achievements extends React.Component {
    super(props)
    this.state = {
      city_id: 0,
-     mapCenter: { lat: 46.011044999999996, lng: -89.59364 }
+     mapCenter: { lat: 46.011044999999996, lng: -89.59364 },
+     outline: false,
+     markerList: []
    }
  }
 
@@ -18,21 +20,31 @@ class Achievements extends React.Component {
     this.setState({city_id: city_id})
   }
 
-  mapCenter = (lat, lng) => {
-    this.setState({mapCenter: {lat: lat, lng: lng}})
+  getMarkers = (markers) => {
+    let newMarkerList = []
+    for (let marker of markers) {
+      let markerLat = (marker.least_lat + marker.greatest_lat) / 2
+      let markerLng = (marker.least_lng + marker.greatest_lng) / 2
+      newMarkerList.push({ lat: markerLat, lng: markerLng })
+    }
+    this.setState({markerList: newMarkerList})
+  }
+
+  mapCenter = (lat, lng, outline) => {
+    this.setState({mapCenter: {lat: lat, lng: lng}, outline: outline})
   }
 
  render() {
    return (
     <div>
       <div style={{float: 'left'}}>
-        <Regions getCityId={this.getCityId} getMapCenter={this.mapCenter}/>
+        <Regions getCityId={this.getCityId} getMapCenter={this.mapCenter} getMarkers={this.getMarkers}/>
       </div>
       <div style={{float: 'right'}}>
         <Neighbourhoods city_id={this.state.city_id}/>
       </div>
       <div>
-         <MapComp center={this.state.mapCenter}/>
+         <MapComp center={this.state.mapCenter} outline={this.state.outline} markerList={this.state.markerList}/>
       </div>
     </div>)
   }

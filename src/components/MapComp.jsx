@@ -1,11 +1,12 @@
 import React from "react"
 import { compose, lifecycle, withHandlers, withState, withProps } from "recompose"
-import { withScriptjs, withGoogleMap, GoogleMap, Marker } from "react-google-maps"
+import { withScriptjs, withGoogleMap, GoogleMap, Marker, Polygon, Circle } from "react-google-maps"
+
 
 const MyMapComponent = compose(
   lifecycle({
-    componentWillReceiveProps(nextProps){
-      this.setState({center: nextProps.center})
+    componentDidReceiveProps(nextProps){       
+      this.setState({ center: nextProps.center, outline: nextProps.outline, markerList: nextProps.markerList })
     }
   }),
   withProps({
@@ -15,41 +16,21 @@ const MyMapComponent = compose(
     mapElement: <div style={{ height: `100%` }} />
   }),
   withScriptjs,
-  withGoogleMap
+  withGoogleMap  
 )
 
 ((props) =>
+
   <GoogleMap
     defaultZoom={8}
-    center={props.center}
+    center={ props.center }
   >
-  {console.log("PROPS: ",props)}
-    {<Marker
-      title={'The marker`s title will appear as a tooltip.'}
-      name={'SOMA'}
-      position={{ lat: 37.778519, lng: -122.405640 }} /> }
+
+    {props.markerList && props.markerList.map(marker => ( <Marker position={{ lat: marker.lat, lng: marker.lng }} /> ))}      
+    {props.outline && <Polygon paths={ props.outline } />}
+
   </GoogleMap>
 )
-
-// class MyFancyComponent extends React.PureComponent {
-//   constructor(props) {
-//     super(props)
-//     this.state = {
-//       center: this.props.center,
-//       marker: { lat: -34.397, lng: 150.644 },
-//       currentPosition: "Default"
-//     }
-//   }
-
-//   render() {
-//     console.log('RENDERINNNNG')
-//     return (
-//       <div>
-//         <MyMapComponent center={this.state.center}/>
-//       </div>
-//     )
-//   }
-// }
 
 export default MyMapComponent
 
