@@ -1,5 +1,4 @@
 import React from 'react'
-import Resource from '../models/resource'
 import Regions from './Regions'
 import Neighbourhoods from './Neighbourhoods'
 import MapComp from './MapComp'
@@ -37,10 +36,10 @@ class Achievements extends React.Component {
  render() {
    return (
     <div>
-      <div style={{float: 'left'}}>
+      <div className="container regioncontainer">
         <Regions getCityId={this.getCityId} getMapCenter={this.mapCenter} getMarkers={this.getMarkers}/>
       </div>
-      <div style={{float: 'right'}}>
+      <div className="container neighbourhoodcontainer">
         <Neighbourhoods city_id={this.state.city_id}/>
       </div>
       <div>

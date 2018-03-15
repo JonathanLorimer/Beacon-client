@@ -49,7 +49,7 @@ class Regions extends React.Component {
     const list = this.state.regions.map((region) => {
       if (region.id === this.state.region_id) {
         return (
-        <div className={`region_id_${region.id}`}>
+        <div>
           <button className="achievement region" onClick={event => {this.loadChildren(region.id, region)}}>
             {region.name}
           </button>
@@ -57,7 +57,7 @@ class Regions extends React.Component {
         </div>)
       } else {
         return (
-        <div className={`region_id_${region.id}`}>
+        <div>
           <button className="achievement region" onClick={event => {this.loadChildren(region.id, region)}}>
             {region.name}
           </button>
