@@ -24,7 +24,7 @@ class App extends Component {
 
    this.state = {
      is_login: false,
-     currentUser: null,
+     currentUser: "none",
      currentUser_id: null,
 
      completedAchievements: {
@@ -39,7 +39,8 @@ class App extends Component {
  }
 
  handleLogin = (data) => {
-    this.setState({is_login: true, currentUser: data[0], completedAchievements: data[1]})
+   console.log(data, 'I am here data 0:', data[0])
+    this.setState({is_login: true, currentUser: data[0].username, completedAchievements: data[1]})
     console.log(this.state.completedAchievements)
  }
 
