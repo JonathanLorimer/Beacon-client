@@ -41,7 +41,7 @@ class Achievements extends React.Component {
   mapCenter = (lat, lng, outline) => {
     console.log(outline)
     // south - west, north - east
-    let bounds = [ [outline[3].lat, outline[3].lat], [outline[1].lat, outline[1].lng] ]
+    let bounds = [ [outline[3].lat, outline[3].lng], [outline[1].lat, outline[1].lng] ]
 
     this.setState({mapCenter: {lat: lat, lng: lng}, outline: outline, bounds: bounds})
   }
