@@ -36,7 +36,18 @@ button{
   text-align: center;
   clear: both;
   padding: 2px;
-  margin: 5px
+  margin: 5px;
+}
+
+.achievement.location.complete {
+  display: inline-block;
+  border: 2px solid $orange;
+  color: $orange;
+  margin: auto;
+  text-align: center;
+  clear: both;
+  padding: 2px;
+  margin: 5px;
 }
 
 .achievement.neighbourhood {
