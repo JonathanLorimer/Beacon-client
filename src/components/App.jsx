@@ -23,18 +23,35 @@ class App extends Component {
    super(props)
 
    this.state = {
-     is_login: true,
-     currentUser: 'Romain',
-     currentUser_id: 2
+     is_login: false,
+     currentUser: null,
+     currentUser_id: null,
+
+     completedAchievements: {
+       locations_ids: [],
+       neighbourhoods_ids: [],
+       cities_ids: [],
+       regions_ids: [],
+       countries_ids: []
+     }
+
    }
  }
 
  handleLogin = (data) => {
-    this.setState({is_login: true, currentUser: data})
+    this.setState({is_login: true, currentUser: data[0], completedAchievements: data[1]})
+    console.log(this.state.completedAchievements)
  }
 
  handleLogout = () => {
-   this.setState({is_login: false})
+   this.setState({is_login: false,
+     completedAchievements: {
+       locations_ids: [],
+       neighbourhoods_ids: [],
+       cities_ids: [],
+       regions_ids: [],
+       countries_ids: []
+     }})
  }
 
 
@@ -50,9 +67,9 @@ class App extends Component {
            <Route path="/userlogin" render={()=>
                    <Userlogin onLogin={this.handleLogin} auth={this.state.is_login} currentUser={this.state.currentUser}/>} />
            <Route path="/achievements" render={(props)=>
-                    <Achievements{...this.props} auth={this.state.is_login} currentUser={this.state.currentUser}/>} />
+                    <Achievements {...this.props} auth={this.state.is_login} currentUser={this.state.currentUser}/>} />
            <Route path="/diary" render={(props)=>
-                    <Diary{...this.props} auth={this.state.is_login} currentUser={this.state.currentUser}/>} />
+                    <Diary {...this.props} auth={this.state.is_login} currentUser={this.state.currentUser}/>} />
          </Switch>
        </Grid>
      </div>
