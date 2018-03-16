@@ -26,7 +26,19 @@ class Cities extends React.Component {
     const list = this.state.cities.map((city) => {
         return (
         <div>
-          <button className="achievement city" onClick={event => {this.props.getCityId(city.id)}}>
+          <button className="achievement city" onClick={event => {
+            this.props.getCityId(city.id)
+
+              let lat = (city.least_lat + city.greatest_lat) / 2
+              let lng = (city.least_lng + city.greatest_lng) / 2
+
+              this.props.getMapCenter(lat, lng, [
+                { lat: city.least_lat, lng: city.greatest_lng },
+                { lat: city.least_lat, lng: city.least_lng },
+                { lat: city.greatest_lat, lng: city.least_lng },
+                { lat: city.greatest_lat, lng: city.greatest_lng }
+              ])
+          }}>
           {city.name}
           </button>
         </div>)
