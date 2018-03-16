@@ -53,7 +53,7 @@ class Regions extends React.Component {
           <button className="achievement region" onClick={event => {this.loadChildren(region.id, region)}}>
             {region.name}
           </button>
-          {this.state.loading && <Cities getCityId={this.props.getCityId} region_id={this.state.region_id} getCitiesMarker={this.loadCitiesMarker} getMapCenter={this.props.getMapCenter}/>}
+          {this.state.loading && <Cities getCityId={this.props.getCityId} region_id={this.state.region_id} getCitiesMarker={this.loadCitiesMarker} getMapCenter={this.props.getMapCenter} completedAchievements={this.props.completedAchievements}/>}
         </div>)
       } else {
         return (
