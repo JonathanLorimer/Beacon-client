@@ -40,7 +40,7 @@ class Regions extends React.Component {
       { lat: region.least_lat, lng: region.greatest_lng },
       { lat: region.least_lat, lng: region.least_lng }, 
       { lat: region.greatest_lat, lng: region.least_lng },
-      { lat: region.greatest_lat, lng: region.greatest_lng },
+      { lat: region.greatest_lat, lng: region.greatest_lng }
     ])    
 
   }
@@ -53,7 +53,7 @@ class Regions extends React.Component {
           <button className="achievement region" onClick={event => {this.loadChildren(region.id, region)}}>
             {region.name}
           </button>
-          {this.state.loading && <Cities getCityId={this.props.getCityId} region_id={this.state.region_id} getCitiesMarker={this.loadCitiesMarker}/>}
+          {this.state.loading && <Cities getCityId={this.props.getCityId} region_id={this.state.region_id} getCitiesMarker={this.loadCitiesMarker} getMapCenter={this.props.getMapCenter}/>}
         </div>)
       } else {
         return (
