@@ -29,10 +29,11 @@ class Userlogin extends React.Component {
       }
     )
       .then((response) => response.json())
-      .then((data) => {console.log(data);
-
-        this.props.onLogin(data)
-        this.setState({ username: data.username, redirect: true })
+      .then((data) => {
+        
+        console.log(data)
+        this.props.onLogin(data.data)
+        this.setState({ redirect: true })
         // self.props.history.push("/achievements")
       })
       .catch((error) => {console.log("Error in the Post Session fetch: ", error)})
