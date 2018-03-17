@@ -50,10 +50,10 @@ class Achievements extends React.Component {
    return (
     <div>
       <div className="container regioncontainer">
-        <Regions getCityId={this.getCityId} getMapCenter={this.mapCenter} getMarkers={this.getMarkers}/>
+        <Regions getCityId={this.getCityId} getMapCenter={this.mapCenter} getMarkers={this.getMarkers} completedAchievements={this.props.completedAchievements}/>
       </div>
       <div className="container neighbourhoodcontainer">
-         <Neighbourhoods city_id={this.state.city_id} getMapCenter={this.mapCenter} getMarkers={this.getMarkers} getLocationsMarkers={this.getLocationsMarkers}/>
+         <Neighbourhoods city_id={this.state.city_id} getMapCenter={this.mapCenter} getMarkers={this.getMarkers} getLocationsMarkers={this.getLocationsMarkers} completedAchievements={this.props.completedAchievements}/>
       </div>
       <div className="googleMap">
          <MapComp center={this.state.mapCenter} outline={this.state.outline} markerList={this.state.markerList} bounds={this.state.bounds}/>

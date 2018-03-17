@@ -52,7 +52,7 @@ class Neighbourhoods extends React.Component {
           <button className="achievement neighbourhood" onClick={event => {this.loadChildren(neighbourhood.id, neighbourhood)}}>
             {neighbourhood.name}
           </button>
-            {this.state.loading && <Locations neighbourhood_id={this.state.neighbourhood_id} getLocationsMarkers={this.props.getLocationsMarkers}/>}
+            {this.state.loading && <Locations neighbourhood_id={this.state.neighbourhood_id} getLocationsMarkers={this.props.getLocationsMarkers} completedAchievements={this.props.completedAchievements}/>}
         </div>)
       } else {
           return (
