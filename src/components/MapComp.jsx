@@ -1,7 +1,11 @@
 import React from "react"
-import { compose, lifecycle, withHandlers, withState, withProps } from "recompose"
-import { withScriptjs, withGoogleMap, GoogleMap, Marker, Polygon, Circle } from "react-google-maps"
-const markerIcon = require('../styles/marker-default.png')
+import { compose, withProps } from "recompose"
+import { withScriptjs, withGoogleMap, GoogleMap, Marker } from "react-google-maps"
+
+const markerIncomplete = require('../styles/incomplete.png')
+const markerComplete = require('../styles/complete.jpeg')
+const markerMouseOverComplete = require('../styles/mouse-over-complete.png')
+const markerMouseOverIncomplete = require('../styles/mouse-over-incomplete.png')
 
 const MyMapComponent = compose(
   withProps({
@@ -17,10 +21,13 @@ const MyMapComponent = compose(
 ((props) => {
   return (
     <GoogleMap
-      defaultZoom={8}
+      defaultZoom={4}
       center={props.center}
       ref={(ref) => { this.map = ref; }}
-      defaultOptions={{
+      defaultOptions={
+        {
+        disableDefaultUI: true,
+        maxZoom: 20,
         styles: [
           {
             "featureType": "water",
@@ -135,11 +142,9 @@ const MyMapComponent = compose(
           }
         ] }}
 
+        
     >
-      {(props.bounds.length > 0) && console.log(props.bounds)}
-      
-      {(props.bounds.length > 0) && console.log(props.bounds[1][0])}
-      {(props.bounds.length > 0) && console.log(props.bounds[0][1])}
+      {/* {console.log(props.markerList)} */}
       {(props.bounds.length > 0) && (this.map.fitBounds(
         new window.google.maps.LatLngBounds()
           .extend(new window.google.maps.LatLng(props.bounds[1][0], props.bounds[0][1]))
@@ -147,11 +152,46 @@ const MyMapComponent = compose(
 
       {props.markerList && props.markerList.map(marker => (<Marker
         icon={{
-          url: markerIcon,
-          scaledSize: new window.google.maps.Size(30, 30)
+          url: markerIncomplete,
+          scaledSize: new window.google.maps.Size(15, 15)
         }}
         position={{ lat: marker.lat, lng: marker.lng }} />))}
-      {props.outline && <Polygon paths={props.outline} />}
+
+      {/* {props.completedMarkerList && props.completedMarkerList.map(marker => (<Marker
+        icon={{
+          url:  markerComplete ,
+          scaledSize: new window.google.maps.Size(25, 25)
+        }}
+        position={{ lat: marker.lat, lng: marker.lng }} />))}
+
+      {props.mouseOverComplete && props.mouseOverComplete.map(marker => (<Marker
+        icon={{
+          url: markerMouseOverComplete,
+          scaledSize: new window.google.maps.Size(25, 25)
+        }}
+        position={{ lat: marker.lat, lng: marker.lng }} />))}
+
+      {props.mouseOverIncomplete && props.mouseOverIncomplete.map(marker => (<Marker
+        icon={{
+          url: markerMouseOverIncomplete,
+          scaledSize: new window.google.maps.Size(25, 25)
+        }}
+        position={{ lat: marker.lat, lng: marker.lng }} />))}
+
+      {props.mouseOverCompleteLocation && props.mouseOverCompleteLocation.map(marker => (<Marker
+        icon={{
+          url: markerMouseOverComplete,
+          scaledSize: new window.google.maps.Size(25, 25)
+        }}
+        position={{ lat: marker.lat, lng: marker.lng }} />))}
+
+      {props.mouseOverIncompleteLocation && props.mouseOverIncompleteLocation.map(marker => (<Marker
+        icon={{
+          url: markerMouseOverIncomplete,
+          scaledSize: new window.google.maps.Size(25, 25)
+        }}
+        position={{ lat: marker.lat, lng: marker.lng }} />))} */}
+     
 
     </GoogleMap>
     )
@@ -161,4 +201,5 @@ const MyMapComponent = compose(
 export default MyMapComponent
 
 
-
+// This is the ugly outline :)
+//{/* {props.outline && <Polygon paths={props.outline} />} */ }

@@ -1,6 +1,7 @@
 import React from 'react'
-import { Row, Col, PageHeader, Table } from 'react-bootstrap'
-import { Route, Redirect, Switch, Link } from 'react-router-dom'
+// import { Row, Col, PageHeader, Table } from 'react-bootstrap'
+import { Redirect } from 'react-router-dom'
+// import { Route, Redirect, Switch, Link } from 'react-router-dom'
 import Resource from '../models/resource'
 const user = Resource("sessions")
 
