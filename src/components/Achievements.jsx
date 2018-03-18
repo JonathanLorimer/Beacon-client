@@ -100,25 +100,25 @@ class Achievements extends React.Component {
     this.setState({ mouseOverComplete: [], mouseOverIncomplete: newMouseOverIncomplete })
   }
 
-  mouseOverComplete = (marker) => {
-    let newMouseOverComplete = []
-    for (let marker of markers) {
-      let markerLat = (marker.least_lat + marker.greatest_lat) / 2
-      let markerLng = (marker.least_lng + marker.greatest_lng) / 2
-      newMouseOverComplete.push({ lat: markerLat, lng: markerLng })
-    }
-    this.setState({ mouseOverComplete: newMouseOverComplete, mouseOverIncomplete: [] })
-  }
+  // mouseOverComplete = (marker) => {
+  //   let newMouseOverComplete = []
+  //   for (let marker of markers) {
+  //     let markerLat = (marker.least_lat + marker.greatest_lat) / 2
+  //     let markerLng = (marker.least_lng + marker.greatest_lng) / 2
+  //     newMouseOverComplete.push({ lat: markerLat, lng: markerLng })
+  //   }
+  //   this.setState({ mouseOverComplete: newMouseOverComplete, mouseOverIncomplete: [] })
+  // }
 
-  mouseOverIncomplete = (marker) => {
-    let newMouseOverIncomplete = []
-    for (let marker of markers) {
-      let markerLat = (marker.least_lat + marker.greatest_lat) / 2
-      let markerLng = (marker.least_lng + marker.greatest_lng) / 2
-      newMouseOverIncomplete.push({ lat: markerLat, lng: markerLng })
-    }
-    this.setState({ mouseOverComplete: [], mouseOverIncomplete: newMouseOverIncomplete })
-  }
+  // mouseOverIncomplete = (marker) => {
+  //   let newMouseOverIncomplete = []
+  //   for (let marker of markers) {
+  //     let markerLat = (marker.least_lat + marker.greatest_lat) / 2
+  //     let markerLng = (marker.least_lng + marker.greatest_lng) / 2
+  //     newMouseOverIncomplete.push({ lat: markerLat, lng: markerLng })
+  //   }
+  //   this.setState({ mouseOverComplete: [], mouseOverIncomplete: newMouseOverIncomplete })
+  // }
 
   mouseOut = () => {
     this.setState({ mouseOverComplete: [], mouseOverIncomplete: [] })

@@ -27,7 +27,7 @@ const MyMapComponent = compose(
       defaultOptions={
         {
         disableDefaultUI: true,
-        maxZoom: 16,
+        maxZoom: 20,
         styles: [
           {
             "featureType": "water",
