@@ -21,7 +21,6 @@ class Neighbourhoods extends React.Component {
       NeighbourhoodsList.findAllChildren(nextProps.city_id)
         .then((result) => {
           this.setState({ neighbourhoods: result.data, errors: null, city_id: this.props.city_id })
-          console.log(result.data)
           this.props.getMarkers(result.data)
         })
         .catch((errors) => this.setState({ errors: errors }))
@@ -52,7 +51,11 @@ class Neighbourhoods extends React.Component {
         if (this.props.completedAchievements.neighbourhoods.hasOwnProperty(neighbourhood.id) && this.props.completedAchievements.neighbourhoods[neighbourhood.id]){
           return (
             <div>
-              <button className="achievement neighbourhood complete" onClick={event => {this.loadChildren(neighbourhood.id, neighbourhood)}}>
+              <button className="achievement neighbourhood complete" 
+                onClick={event => { this.loadChildren(neighbourhood.id, neighbourhood) }} 
+                // onMouseOver={() => this.props.mouseOverComplete(neighbourhood)} 
+                // onMouseOut={() => this.props.mouseOut()}
+              >
                 {neighbourhood.name}
               </button>
                 {this.state.loading && <Locations 
@@ -67,7 +70,11 @@ class Neighbourhoods extends React.Component {
         } else {
           return (
             <div>
-              <button className="achievement neighbourhood" onClick={event => {this.loadChildren(neighbourhood.id, neighbourhood)}}>
+              <button className="achievement neighbourhood" 
+                onClick={event => {this.loadChildren(neighbourhood.id, neighbourhood)}}
+                // onMouseOver={() => this.props.mouseOverIncomplete(neighbourhood)}
+                // onMouseOut={() => this.props.mouseOut()}
+              >
                 {neighbourhood.name}
               </button>
                 {this.state.loading && <Locations 
