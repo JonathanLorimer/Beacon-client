@@ -47,27 +47,54 @@ class Neighbourhoods extends React.Component {
   listPresenter() {
     const list = this.state.neighbourhoods.map((neighbourhood) => {
       if (neighbourhood.id === this.state.neighbourhood_id) {
-        return (
-        <div>
-          <button className="achievement neighbourhood" onClick={event => {this.loadChildren(neighbourhood.id, neighbourhood)}}>
-            {neighbourhood.name}
-          </button>
-            {this.state.loading && <Locations 
-              neighbourhood_id={this.state.neighbourhood_id} 
-              getLocationsMarkers={this.props.getLocationsMarkers} 
-              completedAchievements={this.props.completedAchievements}
-              mouseOverComplete={this.props.mouseOverCompleteLocation}
-              mouseOverIncomplete={this.props.mouseOverIncompleteLocation}
-              mouseOut={this.props.mouseOut}
-            />}
-        </div>)
-      } else {
+
+        if (this.props.completedAchievements.neighbourhoods.hasOwnProperty(neighbourhood.id) && this.props.completedAchievements.neighbourhoods[neighbourhood.id]){
           return (
-          <div>
-            <button className="achievement neighbourhood" onClick={event => {this.loadChildren(neighbourhood.id, neighbourhood)}}>
-              {neighbourhood.name}
-            </button>
-          </div>)
+            <div>
+              <button className="achievement neighbourhood complete" onClick={event => {this.loadChildren(neighbourhood.id, neighbourhood)}}>
+                {neighbourhood.name}
+              </button>
+                {this.state.loading && <Locations 
+                neighbourhood_id={this.state.neighbourhood_id} 
+                getLocationsMarkers={this.props.getLocationsMarkers} 
+                completedAchievements={this.props.completedAchievements}
+                mouseOverComplete={this.props.mouseOverCompleteLocation}
+                mouseOverIncomplete={this.props.mouseOverIncompleteLocation}
+                mouseOut={this.props.mouseOut}
+                />}
+            </div>)
+        } else {
+          return (
+            <div>
+              <button className="achievement neighbourhood" onClick={event => {this.loadChildren(neighbourhood.id, neighbourhood)}}>
+                {neighbourhood.name}
+              </button>
+                {this.state.loading && <Locations 
+                neighbourhood_id={this.state.neighbourhood_id} 
+                getLocationsMarkers={this.props.getLocationsMarkers} 
+                completedAchievements={this.props.completedAchievements}
+                mouseOverComplete={this.props.mouseOverCompleteLocation}
+                mouseOverIncomplete={this.props.mouseOverIncompleteLocation}
+                mouseOut={this.props.mouseOut}
+                />}
+            </div>)
+        }
+      } else {
+        if (this.props.completedAchievements.neighbourhoods.hasOwnProperty(neighbourhood.id) && this.props.completedAchievements.neighbourhoods[neighbourhood.id]){
+          return (
+            <div>
+              <button className="achievement neighbourhood complete" onClick={event => {this.loadChildren(neighbourhood.id, neighbourhood)}}>
+                {neighbourhood.name}
+              </button>
+            </div>)
+        } else {
+          return (
+            <div>
+              <button className="achievement neighbourhood" onClick={event => {this.loadChildren(neighbourhood.id, neighbourhood)}}>
+                {neighbourhood.name}
+              </button>
+            </div>)
+        }
       }
     })
     return list

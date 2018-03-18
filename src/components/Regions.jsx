@@ -48,20 +48,39 @@ class Regions extends React.Component {
   listPresenter(){
     const list = this.state.regions.map((region) => {
       if (region.id === this.state.region_id) {
-        return (
-        <div>
-          <button className="achievement region" onClick={event => {this.loadChildren(region.id, region)}}>
-            {region.name}
-          </button>
-          {this.state.loading && <Cities getCityId={this.props.getCityId} region_id={this.state.region_id} getCitiesMarker={this.loadCitiesMarker} getMapCenter={this.props.getMapCenter} completedAchievements={this.props.completedAchievements}/>}
-        </div>)
+        if (this.props.completedAchievements.regions.hasOwnProperty(region.id) && this.props.completedAchievements.regions[region.id]){
+          return (
+            <div>
+              <button className="achievement region complete" onClick={event => {this.loadChildren(region.id, region)}}>
+                {region.name}
+              </button>
+              {this.state.loading && <Cities getCityId={this.props.getCityId} region_id={this.state.region_id} getCitiesMarker={this.loadCitiesMarker} getMapCenter={this.props.getMapCenter} completedAchievements={this.props.completedAchievements}/>}
+            </div>)
+        } else {
+          return (
+            <div>
+              <button className="achievement region" onClick={event => {this.loadChildren(region.id, region)}}>
+                {region.name}
+              </button>
+              {this.state.loading && <Cities getCityId={this.props.getCityId} region_id={this.state.region_id} getCitiesMarker={this.loadCitiesMarker} getMapCenter={this.props.getMapCenter} completedAchievements={this.props.completedAchievements}/>}
+            </div>)
+        }
       } else {
-        return (
-        <div>
-          <button className="achievement region" onClick={event => {this.loadChildren(region.id, region)}}>
-            {region.name}
-          </button>
-        </div>)
+        if (this.props.completedAchievements.regions.hasOwnProperty(region.id) && this.props.completedAchievements.regions[region.id]){
+          return (
+            <div>
+              <button className="achievement region complete" onClick={event => {this.loadChildren(region.id, region)}}>
+                {region.name}
+              </button>
+            </div>)
+        } else {
+          return (
+            <div>
+              <button className="achievement region" onClick={event => {this.loadChildren(region.id, region)}}>
+                {region.name}
+              </button>
+            </div>)
+        }
       }
     })
     return list
