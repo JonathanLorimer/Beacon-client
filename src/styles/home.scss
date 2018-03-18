@@ -112,6 +112,7 @@ button{
 .container.regioncontainer {
   width: 30%;
   float: left;
+  border: 2px solid black;
 }
 .container.neighbourhoodcontainer { 
   div {
@@ -119,10 +120,13 @@ button{
   }
   float: left;
   width: 70%;
+  height: 10em;
+  border: 2px solid black;
+  overflow: auto;
 }
 
 .googleMap {
   clear: both;
-  border: 20px solid rgb(68, 33, 0);
+  border: 20px solid rgb(255, 94, 0);
 
 }

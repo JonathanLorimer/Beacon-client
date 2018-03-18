@@ -24,12 +24,12 @@ class Locations extends React.Component {
 
   // Presenter maps html over array of locations
   listPresenter() {
-    console.log(this.props.completedAchievements.locations)
+    // console.log(this.props.completedAchievements.locations)
     const list = this.state.locations.map((location) => {
       if (this.props.completedAchievements.locations.hasOwnProperty(location.id)){
-        return (<div className="achievement location complete">{location.name}</div>)
+        return (<div className="achievement location complete" onMouseOver={() => this.props.mouseOverComplete(location)} onMouseOut={() => this.props.mouseOut() }>{location.name}</div>)
       } else {
-        return (<div className="achievement location">{location.name}</div>)
+        return (<div className="achievement location" onMouseOver={() => this.props.mouseOverIncomplete(location)}>{location.name}</div>)
       }
     })
     return list
