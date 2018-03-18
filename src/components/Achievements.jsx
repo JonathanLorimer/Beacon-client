@@ -19,26 +19,30 @@ class Achievements extends React.Component {
    }
  }
 
+  getAverageCoord = (markers) => {
+    let newMarkerList = []
+    for (let marker of markers) {
+      let markerLat = (marker.least_lat + marker.greatest_lat) / 2
+      let markerLng = (marker.least_lng + marker.greatest_lng) / 2
+      newMarkerList.push({ lat: markerLat, lng: markerLng })
+    }
+    return newMarkerList
+  }
+
   getCityId = (city_id) => {
     this.setState({city_id: city_id})
   }
 
   getLocationsMarkers = (markers) => {
-    // console.log("i am in get locations markers")
+
     let newMarkerList = []
     let newCompletedMarkerList = []
     let completedMarkerList = []
     // lets find which achievements have been completed
 
     for (let object of markers) {
-      // console.log(object)
-      for (let level_of_ach in this.props.completedAchievements) {
-        // console.log(level_of_ach)
-        for (let object_to_compare of this.props.completedAchievements[level_of_ach]) {
-          if (object.name === object_to_compare.name) {
-            newCompletedMarkerList.push(object)
-          }
-        }
+      if (this.props.completedAchievements.locations.hasOwnProperty(object.id)) {
+        newCompletedMarkerList.push(object)
       }
     }
 
@@ -52,35 +56,28 @@ class Achievements extends React.Component {
   }
 
   getMarkers = (markers) => {
-    // console.log(markers)
-    let newMarkerList = []
+
     let newCompletedMarkerList = []
-    let completedMarkerList = []
     // lets find which achievements have been completed
 
-    // for ( let object of markers ) {
-    //   for ( let level_of_ach in this.props.completedAchievements ) {
-    //     for (let object_to_compare of this.props.completedAchievements[level_of_ach] ) {
-    //       if ( object.name === object_to_compare.name ){
-    //         newCompletedMarkerList.push(object)
-    //       }
-    //     }
-    //   }     
-    // }
-
-    for (let marker of markers) {
-      let markerLat = (marker.least_lat + marker.greatest_lat) / 2
-      let markerLng = (marker.least_lng + marker.greatest_lng) / 2
-      newMarkerList.push({ lat: markerLat, lng: markerLng })
+    for (let object of markers) {
+      if (this.props.completedAchievements.neighbourhoods.hasOwnProperty(object.id) && object.city_id) {
+        newCompletedMarkerList.push(object)
+      }
+    }
+    for (let object of markers) {
+      if (this.props.completedAchievements.cities.hasOwnProperty(object.id) && object.region_id) {
+        newCompletedMarkerList.push(object)
+      }
+    }
+    for (let object of markers) {
+      if (this.props.completedAchievements.regions.hasOwnProperty(object.id) && object.country_id) {
+        newCompletedMarkerList.push(object)
+      }
     }
 
-    for (let marker of newCompletedMarkerList) {
-      let markerLat = (marker.least_lat + marker.greatest_lat) / 2
-      let markerLng = (marker.least_lng + marker.greatest_lng) / 2
-      completedMarkerList.push({ lat: markerLat, lng: markerLng })
-    }
-
-    // console.log(newMarkerList, completedMarkerList)
+    let newMarkerList = this.getAverageCoord(markers)
+    let completedMarkerList = this.getAverageCoord(newCompletedMarkerList)
     this.setState({ markerList: newMarkerList, completedMarkerList: completedMarkerList})
   }
 
@@ -103,27 +100,26 @@ class Achievements extends React.Component {
     this.setState({ mouseOverComplete: [], mouseOverIncomplete: newMouseOverIncomplete })
   }
 
-  // mouseOverComplete = (marker) => {
-  //   let newMouseOverComplete = []
-  //   for (let marker of markers) {
-  //     let markerLat = (marker.least_lat + marker.greatest_lat) / 2
-  //     let markerLng = (marker.least_lng + marker.greatest_lng) / 2
-  //     newMouseOverComplete.push({ lat: markerLat, lng: markerLng })
-  //   }
-  //   this.setState({ mouseOverComplete: newMouseOverComplete, mouseOverIncomplete: [] })
-  // }
+  mouseOverComplete = (marker) => {
+    console.log('hello')
+    let newMouseOverComplete = []
+    let markerLat = (marker.least_lat + marker.greatest_lat) / 2
+    let markerLng = (marker.least_lng + marker.greatest_lng) / 2
+    newMouseOverComplete.push({ lat: markerLat, lng: markerLng })
+    this.setState({ mouseOverComplete: newMouseOverComplete, mouseOverIncomplete: [] })
+  }
 
-  // mouseOverIncomplete = (marker) => {
-  //   let newMouseOverIncomplete = []
-  //   for (let marker of markers) {
-  //     let markerLat = (marker.least_lat + marker.greatest_lat) / 2
-  //     let markerLng = (marker.least_lng + marker.greatest_lng) / 2
-  //     newMouseOverIncomplete.push({ lat: markerLat, lng: markerLng })
-  //   }
-  //   this.setState({ mouseOverComplete: [], mouseOverIncomplete: newMouseOverIncomplete })
-  // }
+  mouseOverIncomplete = (marker) => {
+    console.log('hello')
+    let newMouseOverIncomplete = []
+    let markerLat = (marker.least_lat + marker.greatest_lat) / 2
+    let markerLng = (marker.least_lng + marker.greatest_lng) / 2
+    newMouseOverIncomplete.push({ lat: markerLat, lng: markerLng })
+    this.setState({ mouseOverComplete: [], mouseOverIncomplete: newMouseOverIncomplete })
+  }
 
   mouseOut = () => {
+    console.log('mouse out')
     this.setState({ mouseOverComplete: [], mouseOverIncomplete: [] })
   }
 
@@ -147,8 +143,8 @@ class Achievements extends React.Component {
           completedAchievements={this.props.completedAchievements}
           mouseOverCompleteLocation={this.mouseOverCompleteLocation}
           mouseOverIncompleteLocation={this.mouseOverIncompleteLocation}
-          mouseOverComplete={this.state.mouseOverComplete}
-          mouseOverIncomplete={this.state.mouseOverIncomplete}
+          mouseOverComplete={this.mouseOverComplete}
+          mouseOverIncomplete={this.mouseOverIncomplete}
           mouseOut={this.mouseOut}
         />
       </div>

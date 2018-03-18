@@ -2,10 +2,10 @@ import React from "react"
 import { compose, withProps } from "recompose"
 import { withScriptjs, withGoogleMap, GoogleMap, Marker } from "react-google-maps"
 
-const markerIncomplete = require('../styles/incomplete.png')
-const markerComplete = require('../styles/complete.jpeg')
-const markerMouseOverComplete = require('../styles/mouse-over-complete.png')
-const markerMouseOverIncomplete = require('../styles/mouse-over-incomplete.png')
+const markerIncomplete = require('../styles/location_incomplete.png')
+const markerComplete = require('../styles/location_complete.png')
+const markerMouseOverComplete = require('../styles/location_mouseover.png')
+const markerMouseOverIncomplete = require('../styles/location_mouseover.png')
 
 const MyMapComponent = compose(
   withProps({
@@ -153,11 +153,11 @@ const MyMapComponent = compose(
       {props.markerList && props.markerList.map(marker => (<Marker
         icon={{
           url: markerIncomplete,
-          scaledSize: new window.google.maps.Size(15, 15)
+          scaledSize: new window.google.maps.Size(25, 25)
         }}
         position={{ lat: marker.lat, lng: marker.lng }} />))}
 
-      {/* {props.completedMarkerList && props.completedMarkerList.map(marker => (<Marker
+      {props.completedMarkerList && props.completedMarkerList.map(marker => (<Marker
         icon={{
           url:  markerComplete ,
           scaledSize: new window.google.maps.Size(25, 25)
@@ -190,7 +190,7 @@ const MyMapComponent = compose(
           url: markerMouseOverIncomplete,
           scaledSize: new window.google.maps.Size(25, 25)
         }}
-        position={{ lat: marker.lat, lng: marker.lng }} />))} */}
+        position={{ lat: marker.lat, lng: marker.lng }} />))}
      
 
     </GoogleMap>

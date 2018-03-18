@@ -46,6 +46,7 @@ class Regions extends React.Component {
   }
 
   listPresenter(){
+    // console.log(this.props.completedAchievements.regions)
     const list = this.state.regions.map((region) => {
       if (region.id === this.state.region_id) {
         if (this.props.completedAchievements.regions.hasOwnProperty(region.id) && this.props.completedAchievements.regions[region.id]){

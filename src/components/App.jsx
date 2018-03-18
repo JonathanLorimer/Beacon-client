@@ -28,30 +28,28 @@ class App extends Component {
      currentUser_id: null,
 
      completedAchievements: {
-       locations: [],
-       neighbourhoods: [],
-       cities: [],
-       regions: [],
-       countries: []
+       locations: {},
+       neighbourhoods: {},
+       cities: {},
+       regions: {},
+       countries: {}
      }
 
    }
  }
 
  handleLogin = (data) => {
-  //  console.log(data, 'I am here data 0:', data[0])
     this.setState({is_login: true, currentUser: data[0].username, completedAchievements: data[1]})
-    // console.log(this.state.completedAchievements)
  }
 
  handleLogout = () => {
    this.setState({is_login: false,
      completedAchievements: {
-       locations: [],
-       neighbourhoods: [],
-       cities: [],
-       regions: [],
-       countries: []
+       locations: {},
+       neighbourhoods: {},
+       cities: {},
+       regions: {},
+       countries: {}
      }})
  }
 
