@@ -31,7 +31,9 @@ class Achievements extends React.Component {
     // lets find which achievements have been completed
 
     for (let object of markers) {
+      // console.log(object)
       for (let level_of_ach in this.props.completedAchievements) {
+        // console.log(level_of_ach)
         for (let object_to_compare of this.props.completedAchievements[level_of_ach]) {
           if (object.name === object_to_compare.name) {
             newCompletedMarkerList.push(object)
@@ -50,20 +52,21 @@ class Achievements extends React.Component {
   }
 
   getMarkers = (markers) => {
+    // console.log(markers)
     let newMarkerList = []
     let newCompletedMarkerList = []
     let completedMarkerList = []
     // lets find which achievements have been completed
 
-    for ( let object of markers ) {
-      for ( let level_of_ach in this.props.completedAchievements ) {
-        for (let object_to_compare of this.props.completedAchievements[level_of_ach] ) {
-          if ( object.name === object_to_compare.name ){
-            newCompletedMarkerList.push(object)
-          }
-        }
-      }     
-    }
+    // for ( let object of markers ) {
+    //   for ( let level_of_ach in this.props.completedAchievements ) {
+    //     for (let object_to_compare of this.props.completedAchievements[level_of_ach] ) {
+    //       if ( object.name === object_to_compare.name ){
+    //         newCompletedMarkerList.push(object)
+    //       }
+    //     }
+    //   }     
+    // }
 
     for (let marker of markers) {
       let markerLat = (marker.least_lat + marker.greatest_lat) / 2

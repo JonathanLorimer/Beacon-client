@@ -144,7 +144,7 @@ const MyMapComponent = compose(
 
         
     >
-
+      {/* {console.log(props.markerList)} */}
       {(props.bounds.length > 0) && (this.map.fitBounds(
         new window.google.maps.LatLngBounds()
           .extend(new window.google.maps.LatLng(props.bounds[1][0], props.bounds[0][1]))
@@ -157,7 +157,7 @@ const MyMapComponent = compose(
         }}
         position={{ lat: marker.lat, lng: marker.lng }} />))}
 
-      {props.completedMarkerList && props.completedMarkerList.map(marker => (<Marker
+      {/* {props.completedMarkerList && props.completedMarkerList.map(marker => (<Marker
         icon={{
           url:  markerComplete ,
           scaledSize: new window.google.maps.Size(25, 25)
@@ -190,7 +190,7 @@ const MyMapComponent = compose(
           url: markerMouseOverIncomplete,
           scaledSize: new window.google.maps.Size(25, 25)
         }}
-        position={{ lat: marker.lat, lng: marker.lng }} />))}
+        position={{ lat: marker.lat, lng: marker.lng }} />))} */}
      
 
     </GoogleMap>

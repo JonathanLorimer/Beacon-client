@@ -21,6 +21,7 @@ class Neighbourhoods extends React.Component {
       NeighbourhoodsList.findAllChildren(nextProps.city_id)
         .then((result) => {
           this.setState({ neighbourhoods: result.data, errors: null, city_id: this.props.city_id })
+          console.log(result.data)
           this.props.getMarkers(result.data)
         })
         .catch((errors) => this.setState({ errors: errors }))
