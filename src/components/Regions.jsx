@@ -1,9 +1,9 @@
 import React from 'react'
 import Resource from '../models/resource'
 import Cities from './Cities'
-import { Route, Redirect, Switch, Link } from 'react-router-dom'
+// import { Route, Redirect, Switch, Link } from 'react-router-dom'
 const RegionsList = Resource('regions')
-const CitiesList = Resource('regions', 'cities')
+// const CitiesList = Resource('regions', 'cities')
 
 class Regions extends React.Component {
   constructor(props) {
@@ -46,6 +46,7 @@ class Regions extends React.Component {
   }
 
   listPresenter(){
+    // console.log(this.props.completedAchievements.regions)
     const list = this.state.regions.map((region) => {
       if (region.id === this.state.region_id) {
         if (this.props.completedAchievements.regions.hasOwnProperty(region.id) && this.props.completedAchievements.regions[region.id]){
