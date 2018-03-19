@@ -50,9 +50,9 @@ class Diary extends React.Component {
 
     const list = this.state.locations.map((location) => {
         return (
-          <tr className="diary entry">
+          <tr>
             <td>{location.name}</td>
-            <td>{location.created_at}</td>
+            <td>{location.created_at.slice(0,10)}</td>
             <td>{location.category}</td>
           </tr>)
     })
@@ -62,20 +62,24 @@ class Diary extends React.Component {
   render() {
     if(this.props.auth && this.props.currentUser.data !=="failed"){
       return (
-      <table>
-        <div>
-          order by: 
-          <button onClick={() => this.orderByLocation()}>Location Name</button> 
-          <button onClick={() => this.orderByType()}>Type </button>
-          <button onClick={() => this.orderByDate()}>Date Completed </button>
-        </div>
+  <div>
+      <div>
+        <p className="diary byorder">order by:</p>
+        <button className="diary diaryButton byLocation" onClick={() => this.orderByLocation()}>Location Name</button>
+        <button className="diary diaryButton byType" onClick={() => this.orderByType()}>Type </button>
+        <button className="diary diaryButton byDate" onClick={() => this.orderByDate()}>Date Completed </button>
+      </div>
+      <table className="diary entry">
         <tr>
           <th>Location</th>
           <th>Date Achieved</th>
           <th>Type</th>
         </tr>
+
         {this.listPresenter()}
-      </table>)
+
+      </table>
+    </div> )
     } else {
        return <Redirect to='/userlogin'/>
     }
