@@ -11,7 +11,6 @@ class Regions extends React.Component {
     this.state = {
       regions: [],
       region_id: 0,
-      loading: false,
       errors: null,
       cities: null
     }
@@ -28,11 +27,7 @@ class Regions extends React.Component {
   }
 
   loadChildren = (region_id, region) => {
-    if(this.state.loading){
-      this.setState({ loading: false })
-      return
-    }
-    this.setState({region_id: region_id, loading: true })
+    this.setState({region_id: region_id})
     let lat = (region.least_lat + region.greatest_lat) / 2
     let lng = (region.least_lng + region.greatest_lng) / 2
 
@@ -55,7 +50,7 @@ class Regions extends React.Component {
               <button className="achievement region complete" onClick={event => {this.loadChildren(region.id, region)}}>
                 {region.name}
               </button>
-              {this.state.loading && <Cities getCityId={this.props.getCityId} region_id={this.state.region_id} getCitiesMarker={this.loadCitiesMarker} getMapCenter={this.props.getMapCenter} completedAchievements={this.props.completedAchievements}/>}
+              {<Cities getCityId={this.props.getCityId} region_id={this.state.region_id} getCitiesMarker={this.loadCitiesMarker} getMapCenter={this.props.getMapCenter} completedAchievements={this.props.completedAchievements}/>}
             </div>)
         } else {
           return (
@@ -63,7 +58,7 @@ class Regions extends React.Component {
               <button className="achievement region" onClick={event => {this.loadChildren(region.id, region)}}>
                 {region.name}
               </button>
-              {this.state.loading && <Cities getCityId={this.props.getCityId} region_id={this.state.region_id} getCitiesMarker={this.loadCitiesMarker} getMapCenter={this.props.getMapCenter} completedAchievements={this.props.completedAchievements}/>}
+              {<Cities getCityId={this.props.getCityId} region_id={this.state.region_id} getCitiesMarker={this.loadCitiesMarker} getMapCenter={this.props.getMapCenter} completedAchievements={this.props.completedAchievements}/>}
             </div>)
         }
       } else {

@@ -137,10 +137,12 @@ button{
   margin: 0px;
 }
 .container.regioncontainer {
-  width: 30%;
+  width: 27%;
   float: left;
-  border: 2px solid black;
-  height: 100vh;
+  text-align: center;
+  // border: 2px solid black;
+  height: 55em;
+  margin: 0 10px;
   overflow: auto;
 }
 .container.neighbourhoodcontainer { 
@@ -149,22 +151,22 @@ button{
   }
   float: left;
   width: 70%;
-  height: 38em;
-  border: 2px solid black;
+  height: 25em;
+  // border: 2px solid black;
   overflow: auto;
 }
 
 .googleMap {
-  // clear: both;
   width: 70%;
-  border: 20px solid rgb(216, 108, 45);
+  border: 4px solid black;
+  margin: 10px 20px 0 0;
   float: right;
 }
 
 #container {
   width: 100%;
-  height: 100vh;
-  margin: 0px;
+  height: 30em;
+  margin: 10px;
 }
 
 ::-webkit-scrollbar {
@@ -172,10 +174,10 @@ button{
 }
  
 ::-webkit-scrollbar-track-piece {
-  background-color: #010510
+  background-color: white
 }
  
 ::-webkit-scrollbar-thumb {
-  background-color: rgb(218, 110, 38);
-  outline: 3px solid rgb(0, 0, 0);
+  background-color: black;
+  // outline: 3px solid rgb(0, 0, 0);
 }
