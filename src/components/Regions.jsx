@@ -12,7 +12,6 @@ class Regions extends React.Component {
       regions: [],
       region_id: 0,
       errors: null,
-      cities: null
     }
   }
 
@@ -56,7 +55,6 @@ class Regions extends React.Component {
                 getCitiesMarker={this.loadCitiesMarker} 
                 getMapCenter={this.props.getMapCenter} 
                 completedAchievements={this.props.completedAchievements}
-                reRenderCities={this.state.reRenderCities}
                 />}
             </div>)
         } else {
@@ -71,7 +69,6 @@ class Regions extends React.Component {
               getCitiesMarker={this.loadCitiesMarker} 
               getMapCenter={this.props.getMapCenter} 
               completedAchievements={this.props.completedAchievements}
-              reRenderCities={this.state.reRenderCities}
               />}
             </div>)
         }

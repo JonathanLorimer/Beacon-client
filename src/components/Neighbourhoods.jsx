@@ -20,12 +20,8 @@ class Neighbourhoods extends React.Component {
       NeighbourhoodsList.findAllChildren(nextProps.city_id)
         .then((result) => {
           console.log(result.data[0])
-          if (result.data[0]){
           this.setState({ neighbourhoods: result.data, errors: null, city_id: this.props.city_id })
           this.props.getMarkers(result.data)
-          } else {
-          this.props.reRenderCities()
-          }
         })
         .catch((errors) => this.setState({ errors: errors }))
     }

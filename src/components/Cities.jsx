@@ -36,12 +36,8 @@ class Cities extends React.Component {
         return (
           <div>
             <button className="achievement city complete" onClick={event => {
-              if (this.state.last_click !== city.id){
                 this.props.getCityId(city.id)
-                this.setState({last_click: city.id})
-              } else {
-                this.props.getCityId(0)
-              }
+
   
                 let lat = (city.least_lat + city.greatest_lat) / 2
                 let lng = (city.least_lng + city.greatest_lng) / 2
