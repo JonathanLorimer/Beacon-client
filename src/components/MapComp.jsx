@@ -1,6 +1,6 @@
 import React from "react"
 import { compose, withProps } from "recompose"
-import { withScriptjs, withGoogleMap, GoogleMap, Marker } from "react-google-maps"
+import { withScriptjs, withGoogleMap, GoogleMap, Marker, Polygon } from "react-google-maps"
 
 const markerIncomplete = require('../styles/location_incomplete.png')
 const markerComplete = require('../styles/location_complete.png')
@@ -15,7 +15,7 @@ const MyMapComponent = compose(
     mapElement: <div style={{ height: `100%` }} />
   }),
   withScriptjs,
-  withGoogleMap,  
+  withGoogleMap,
 )
 
 ((props) => {
@@ -400,7 +400,7 @@ const MyMapComponent = compose(
             }
           ] }}
 
-        
+
     >
       {/* {console.log(props.markerList)} */}
       {(props.bounds.length > 0) && (this.map.fitBounds(
@@ -449,7 +449,7 @@ const MyMapComponent = compose(
           scaledSize: new window.google.maps.Size(25, 25)
         }}
         position={{ lat: marker.lat, lng: marker.lng }} />))}
-     
+     {props.outline && <Polygon paths={props.outline} />}
 
     </GoogleMap>
     )
