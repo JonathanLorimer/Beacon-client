@@ -68,7 +68,7 @@ class App extends Component {
            <Route path="/achievements" render={(props)=>
                     <Achievements {...this.props} auth={this.state.is_login} currentUser={this.state.currentUser} completedAchievements={this.state.completedAchievements}/>} />
            <Route path="/diary" render={(props)=>
-                    <Diary {...this.props} auth={this.state.is_login} currentUser={this.state.currentUser}/>} />
+             <Diary {...this.props} auth={this.state.is_login} currentUser={this.state.currentUser} completedAchievements={this.state.completedAchievements}/>} />
          </Switch>
        </Grid>
      </div>
