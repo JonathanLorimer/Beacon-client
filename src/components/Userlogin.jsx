@@ -31,7 +31,7 @@ class Userlogin extends React.Component {
     )
       .then((response) => response.json())
       .then((data) => {
-
+        console.log(data);
         this.props.onLogin(data.data)
         this.setState({ username: data.data.username, redirect: true })
         // self.props.history.push("/achievements")

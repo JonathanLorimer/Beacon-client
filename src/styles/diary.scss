@@ -1,0 +1,45 @@
+body {
+  background: white;
+  color: black;
+  font-family: "Heebo", sans-serif;
+
+}
+th, td {
+  text-align: center;
+}
+
+button:focus {
+  outline: none; }
+
+button {
+  border: none; }
+
+.diary {
+  display: inline-block;
+  position: relative;
+  padding: 0 15px;
+  font-size: 1.5em;
+
+}
+
+
+.diary.diaryButton {
+  font-size: 1.5em;
+  border: 2px solid black;
+  color: black;
+  height: 1.5em;
+  clear: both;
+  width: 200px;
+  margin: 5px; }
+
+
+.diary.diaryButton:hover {
+  border: 0 solid;
+  background: black;
+  color: white; }
+
+.diary.diaryButton:focus {
+  border: 0 solid;
+  background: black;
+  color: white; }
+
