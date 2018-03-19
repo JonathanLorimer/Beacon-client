@@ -9,7 +9,6 @@ class Neighbourhoods extends React.Component {
     super(props)
     this.state = {
       neighbourhood_id: 0,
-      loading: true,
       errors: null,
       neighbourhoods: [],
       city_id: 0
@@ -20,19 +19,20 @@ class Neighbourhoods extends React.Component {
     if (nextProps.city_id !== this.state.city_id){      
       NeighbourhoodsList.findAllChildren(nextProps.city_id)
         .then((result) => {
+          console.log(result.data[0])
+          if (result.data[0]){
           this.setState({ neighbourhoods: result.data, errors: null, city_id: this.props.city_id })
           this.props.getMarkers(result.data)
+          } else {
+          this.props.reRenderCities()
+          }
         })
         .catch((errors) => this.setState({ errors: errors }))
     }
   }
 
   loadChildren = (neighbourhood_id, neighbourhood) => {
-    if (this.state.loading) {
-      this.setState({ loading: false })
-      return
-    }
-    this.setState({neighbourhood_id: neighbourhood_id, loading: true})
+    this.setState({neighbourhood_id: neighbourhood_id})
     let lat = (neighbourhood.least_lat + neighbourhood.greatest_lat) / 2
     let lng = (neighbourhood.least_lng + neighbourhood.greatest_lng) / 2
 
@@ -58,7 +58,7 @@ class Neighbourhoods extends React.Component {
               >
                 {neighbourhood.name}
               </button>
-                {this.state.loading && <Locations 
+                {<Locations 
                 neighbourhood_id={this.state.neighbourhood_id} 
                 getLocationsMarkers={this.props.getLocationsMarkers} 
                 completedAchievements={this.props.completedAchievements}
@@ -77,7 +77,7 @@ class Neighbourhoods extends React.Component {
               >
                 {neighbourhood.name}
               </button>
-                {this.state.loading && <Locations 
+                {<Locations 
                 neighbourhood_id={this.state.neighbourhood_id} 
                 getLocationsMarkers={this.props.getLocationsMarkers} 
                 completedAchievements={this.props.completedAchievements}

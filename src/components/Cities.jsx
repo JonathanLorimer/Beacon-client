@@ -8,8 +8,16 @@ class Cities extends React.Component {
     super(props)
     this.state = {
       cities: [],
-      loading: false,
-      errors: null
+      errors: null,
+      last_click: 0,
+      render: false
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.reRenderCities){
+      this.setState({render: true})
+      this.setState({render: false})
     }
   }
 
@@ -28,7 +36,12 @@ class Cities extends React.Component {
         return (
           <div>
             <button className="achievement city complete" onClick={event => {
-              this.props.getCityId(city.id)
+              if (this.state.last_click !== city.id){
+                this.props.getCityId(city.id)
+                this.setState({last_click: city.id})
+              } else {
+                this.props.getCityId(0)
+              }
   
                 let lat = (city.least_lat + city.greatest_lat) / 2
                 let lng = (city.least_lng + city.greatest_lng) / 2

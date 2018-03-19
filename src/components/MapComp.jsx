@@ -167,28 +167,28 @@ const MyMapComponent = compose(
       {props.mouseOverComplete && props.mouseOverComplete.map(marker => (<Marker
         icon={{
           url: markerMouseOverComplete,
-          scaledSize: new window.google.maps.Size(25, 25)
+          scaledSize: new window.google.maps.Size(50, 50)
         }}
         position={{ lat: marker.lat, lng: marker.lng }} />))}
 
       {props.mouseOverIncomplete && props.mouseOverIncomplete.map(marker => (<Marker
         icon={{
           url: markerMouseOverIncomplete,
-          scaledSize: new window.google.maps.Size(25, 25)
+          scaledSize: new window.google.maps.Size(50, 50)
         }}
         position={{ lat: marker.lat, lng: marker.lng }} />))}
 
       {props.mouseOverCompleteLocation && props.mouseOverCompleteLocation.map(marker => (<Marker
         icon={{
           url: markerMouseOverComplete,
-          scaledSize: new window.google.maps.Size(25, 25)
+          scaledSize: new window.google.maps.Size(50, 50)
         }}
         position={{ lat: marker.lat, lng: marker.lng }} />))}
 
       {props.mouseOverIncompleteLocation && props.mouseOverIncompleteLocation.map(marker => (<Marker
         icon={{
           url: markerMouseOverIncomplete,
-          scaledSize: new window.google.maps.Size(25, 25)
+          scaledSize: new window.google.maps.Size(50, 50)
         }}
         position={{ lat: marker.lat, lng: marker.lng }} />))}
      

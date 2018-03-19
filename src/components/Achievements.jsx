@@ -15,7 +15,8 @@ class Achievements extends React.Component {
      completedMarkerList: [],
      bounds: [],
      mouseOverComplete: [],
-     mouseOverIncomplete: []
+     mouseOverIncomplete: [],
+     reRenderCities: false,
    }
  }
 
@@ -31,6 +32,11 @@ class Achievements extends React.Component {
 
   getCityId = (city_id) => {
     this.setState({city_id: city_id})
+  }
+
+  renderCityMarker = () => {
+    this.setState({reRenderCities: true})
+    this.setState({reRenderCities: false})
   }
 
   getLocationsMarkers = (markers) => {
@@ -132,6 +138,7 @@ class Achievements extends React.Component {
           getMapCenter={this.mapCenter} 
           getMarkers={this.getMarkers} 
           completedAchievements={this.props.completedAchievements}
+          reRenderCities={this.state.reRenderCities}
         />
       </div>
       <div className="container neighbourhoodcontainer">
@@ -146,6 +153,7 @@ class Achievements extends React.Component {
           mouseOverComplete={this.mouseOverComplete}
           mouseOverIncomplete={this.mouseOverIncomplete}
           mouseOut={this.mouseOut}
+          reRenderCities={this.renderCityMarker}
         />
       </div>
       <div className="googleMap">
