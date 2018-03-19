@@ -5,7 +5,7 @@ $orange: #E59516;
 
 
 body {
-  background: white;
+  background: #ffffff;
   color: black;
   font-family: $font;
 }
@@ -140,7 +140,7 @@ button{
   width: 30%;
   float: left;
   border: 2px solid black;
-  height: 38em;
+  height: 100vh;
   overflow: auto;
 }
 .container.neighbourhoodcontainer { 
@@ -155,8 +155,27 @@ button{
 }
 
 .googleMap {
-  clear: both;
-  width: 66%;
-  border: 20px solid rgb(255, 94, 0);
+  // clear: both;
+  width: 70%;
+  border: 20px solid rgb(216, 108, 45);
+  float: right;
+}
 
+#container {
+  width: 100%;
+  height: 100vh;
+  margin: 0px;
+}
+
+::-webkit-scrollbar {
+    width: 1em;
+}
+ 
+::-webkit-scrollbar-track-piece {
+  background-color: #010510
+}
+ 
+::-webkit-scrollbar-thumb {
+  background-color: rgb(218, 110, 38);
+  outline: 3px solid rgb(0, 0, 0);
 }
