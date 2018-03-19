@@ -15,7 +15,8 @@ class Achievements extends React.Component {
      completedMarkerList: [],
      bounds: [],
      mouseOverComplete: [],
-     mouseOverIncomplete: []
+     mouseOverIncomplete: [],
+     latestAchievements: []
    }
  }
 
@@ -123,9 +124,40 @@ class Achievements extends React.Component {
     this.setState({ mouseOverComplete: [], mouseOverIncomplete: [] })
   }
 
+  latestAchievementsList = () => {
+    let locations = this.props.completedAchievements.locations
+    let locationsArray = []
+    for (let object in locations){
+      locationsArray.push(locations[object])
+    }
+    // Sort by date
+    if (locationsArray.length > 0) {
+      console.log(locationsArray)
+      // let sorting = locations.slice(0);
+      locationsArray.sort(function (a, b) {
+        let x = a.created_at.toLowerCase();
+        let y = b.created_at.toLowerCase();
+        return x < y ? -1 : x > y ? 1 : 0;
+      });
+      let newLatestAchievements = []
+      for (let x = 0; x < 5; x++){
+        newLatestAchievements.push(locationsArray[x])
+      }
+      const list = newLatestAchievements.map((location) => {
+        return (
+          <tr className="diary entry">
+            <td>{location.name}</td>
+            <td>{location.created_at}</td>
+            <td>{location.category}</td>
+          </tr>)
+      })
+      return list
+    }
+  }
+
  render() {
    return (
-    <div>
+    <div id="container">
       <div className="container regioncontainer">
         <Regions 
           getCityId={this.getCityId} 
@@ -135,6 +167,7 @@ class Achievements extends React.Component {
         />
       </div>
       <div className="container neighbourhoodcontainer">
+        {!this.state.city_id && this.latestAchievementsList()}
         <Neighbourhoods 
           city_id={this.state.city_id} 
           getMapCenter={this.mapCenter} 
