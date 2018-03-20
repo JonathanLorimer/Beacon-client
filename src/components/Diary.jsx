@@ -18,9 +18,22 @@ class Diary extends React.Component {
 
   componentWillMount() {
     // user id 1
-    Locations.findAllChildren(1)
-      .then((result) => { this.setState({ locations: result.data }) })
-      .catch((errors) => this.setState({ errors: errors }))
+     Locations.findAllChildren(1)
+     .then((result) => {
+
+       let newLocations = result.data[0]
+       let newLocationsVisited = result.data[1]
+
+       for (let location of newLocations){
+         for (let visitedLocation of newLocationsVisited){
+           if(location.name === visitedLocation.name){
+             location.created_at = visitedLocation.visited_at
+           }
+         }
+       }
+
+       this.setState({ locations: newLocations, }) })
+     .catch((errors) => this.setState({ errors: errors }))
   }
 
   orderByLocation = () => {
@@ -36,7 +49,19 @@ class Diary extends React.Component {
   }
 
   listPresenter(sortBy) {
-    if(sortBy){
+    if(sortBy === "created_at"){
+      let locationsToSort = this.state.locations
+      let sorting = locationsToSort.slice(0);
+      sorting.sort(function (a, b) {
+        let x = a[sortBy].toLowerCase();
+        let y = b[sortBy].toLowerCase();
+        return x > y ? -1 : x < y ? 1 : 0;
+      });
+
+      this.setState({ locations: sorting })
+    }
+
+      else if(sortBy){
       let locationsToSort = this.state.locations
       let sorting = locationsToSort.slice(0);
       sorting.sort(function (a, b) {

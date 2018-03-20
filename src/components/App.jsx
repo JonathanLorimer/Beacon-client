@@ -39,7 +39,21 @@ class App extends Component {
  }
 
  handleLogin = (data) => {
-    this.setState({is_login: true, currentUser: data[0].username, completedAchievements: data[1]})
+
+  let newCompletedAchievements = data[1]
+  let newLocationsVisited = data[2]
+
+   for (let location in newCompletedAchievements.locations){
+     for (let visitedLocation of newLocationsVisited){
+       if(newCompletedAchievements.locations[location].name === visitedLocation.name){
+        console.log(`Changing ${newCompletedAchievements.locations[location].created_at} to ${visitedLocation.visited_at}`);
+         newCompletedAchievements.locations[location].created_at = visitedLocation.visited_at
+       }
+     }
+   }
+
+
+  this.setState({is_login: true, currentUser: data[0].username, completedAchievements: newCompletedAchievements})
  }
 
  handleLogout = () => {
