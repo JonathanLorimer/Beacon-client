@@ -137,34 +137,90 @@ button{
   margin: 0px;
 }
 .container.regioncontainer {
-  width: 30%;
+  width: 23%;
   float: left;
-  border: 2px solid black;
-  height: 100vh;
+  text-align: center;
+  // border: 2px solid black;
+  height: 55em;
+  margin: 0 10px;
   overflow: auto;
 }
 .container.neighbourhoodcontainer { 
+  border: 2px solid black;
   div {
     text-align: center;
   }
   float: left;
-  width: 70%;
-  height: 38em;
-  border: 2px solid black;
+  width: 75%;
+  height: 25em;
+  // border: 2px solid black;
   overflow: auto;
 }
 
+.input-coord{
+  padding: 5px 0em 0em 3.4em;
+  width: 100%;
+  height: 75px;
+  clear:both;
+}
+
+.topnav.element{
+  float: right;
+  margin: 1.4em 2em;
+
+  a{
+    font-size: 1.5em;
+    color: black
+  }
+  a:hover{
+    color: $orange;
+  }
+
+}
+
+#beacon{
+  float: left;
+}
+
+#root{
+}
+
+.background{
+  width: 1152px;
+  height: 208px;
+  background-image: url(./BeaconEmblem.png);
+  margin: 50px auto;
+}
+
+.login-form {
+  height: 300px;
+  width: 300px;
+  margin: auto;
+  padding: 40px;
+  h1 {
+    text-align: center;
+  }
+}
+
+#login-form{
+  text-align: center;
+}
+
+.container.rightside {
+  text-align: center;
+}
+
 .googleMap {
-  // clear: both;
-  width: 70%;
-  border: 20px solid rgb(216, 108, 45);
+  width: 75%;
+  border: 4px solid black;
+  margin: 10px 10px 0 0;
   float: right;
 }
 
 #container {
   width: 100%;
-  height: 100vh;
-  margin: 0px;
+  height: 30em;
+  margin: 10px;
 }
 
 ::-webkit-scrollbar {
@@ -172,10 +228,14 @@ button{
 }
  
 ::-webkit-scrollbar-track-piece {
-  background-color: #010510
+  background-color: white
 }
  
 ::-webkit-scrollbar-thumb {
-  background-color: rgb(218, 110, 38);
-  outline: 3px solid rgb(0, 0, 0);
+  background-color: black;
+  // outline: 3px solid rgb(0, 0, 0);
+}
+
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 30px white inset;
 }
