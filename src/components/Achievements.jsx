@@ -136,7 +136,7 @@ class Achievements extends React.Component {
       locationsArray.sort(function (a, b) {
         let x = a.created_at.toLowerCase();
         let y = b.created_at.toLowerCase();
-        return x < y ? -1 : x > y ? 1 : 0;
+        return x > y ? -1 : x < y ? 1 : 0;
       });
       let newLatestAchievements = []
       console.log(locationsArray);
@@ -155,7 +155,7 @@ class Achievements extends React.Component {
           return (
             <tr className="diary entry">
               <td>{location.name}</td>
-              <td>{location.created_at}</td>
+              <td>{location.created_at.slice(0,10)}</td>
               <td>{location.category}</td>
             </tr>)
         })
