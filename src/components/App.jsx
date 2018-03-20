@@ -44,25 +44,24 @@ class App extends Component {
     setInterval(() => {
       Updates.findAllChildren(1)
         .then((result) => {
-          console.log(this.state.completedAchievements)
-          let newCompletedAchievements = this.state.completedAchievements
-          let foundLocation = []
+          if (result.data) {
+            let newCompletedAchievements = this.state.completedAchievements
+            let foundLocation = []
 
 
-          for (let location in newCompletedAchievements.locations) {
-            if (newCompletedAchievements.locations[location].name === result.data.name) {
-              foundLocation.push(location)
+            for (let location in newCompletedAchievements.locations) {
+              if (newCompletedAchievements.locations[location].name === result.data.name) {
+                foundLocation.push(location)
+              }
+            }
+
+            if(foundLocation.length === 0 && result.data.name) {
+              newCompletedAchievements.locations[Object.keys(newCompletedAchievements.locations).length] = result.data
+              this.setState({ completedAchievements: newCompletedAchievements })
             }
           }
-          console.log('foundLocation before', foundLocation)
-          if(foundLocation.length === 0 && result.data.name) {
-            console.log('foundLocation after', foundLocation)
-            newCompletedAchievements.locations[Object.keys(newCompletedAchievements.locations).length] = result.data
-            this.setState({ completedAchievements: newCompletedAchievements })           
-          }
-
         })
-    }, 5000)   
+    }, 5000)
   }
 
  handleLogin = (data) => {
