@@ -166,34 +166,34 @@ class Achievements extends React.Component {
           completedAchievements={this.props.completedAchievements}
         />
       </div>
-      <div className="container neighbourhoodcontainer">
-        {!this.state.city_id && this.latestAchievementsList()}
-        <Neighbourhoods 
-          city_id={this.state.city_id} 
-          getMapCenter={this.mapCenter} 
-          getMarkers={this.getMarkers} 
-          getLocationsMarkers={this.getLocationsMarkers} 
-          completedAchievements={this.props.completedAchievements}
-          mouseOverCompleteLocation={this.mouseOverCompleteLocation}
-          mouseOverIncompleteLocation={this.mouseOverIncompleteLocation}
-          mouseOverComplete={this.mouseOverComplete}
-          mouseOverIncomplete={this.mouseOverIncomplete}
-          mouseOut={this.mouseOut}
-        />
-      </div>
-      <div className="googleMap">
-        <MapComp 
-          center={this.state.mapCenter} 
-          outline={this.state.outline} 
-          markerList={this.state.markerList} 
-          completedMarkerList={this.state.completedMarkerList} 
-          bounds={this.state.bounds}
-          mouseOverCompleteLocation={this.state.mouseOverComplete}
-          mouseOverIncompleteLocation={this.state.mouseOverIncomplete}
-          mouseOverComplete={this.state.mouseOverComplete}
-          mouseOverIncomplete={this.state.mouseOverIncomplete}
-        />
-      </div>
+        <div className="container neighbourhoodcontainer">
+          {!this.state.city_id && this.latestAchievementsList()}
+          <Neighbourhoods 
+            city_id={this.state.city_id} 
+            getMapCenter={this.mapCenter} 
+            getMarkers={this.getMarkers} 
+            getLocationsMarkers={this.getLocationsMarkers} 
+            completedAchievements={this.props.completedAchievements}
+            mouseOverCompleteLocation={this.mouseOverCompleteLocation}
+            mouseOverIncompleteLocation={this.mouseOverIncompleteLocation}
+            mouseOverComplete={this.mouseOverComplete}
+            mouseOverIncomplete={this.mouseOverIncomplete}
+            mouseOut={this.mouseOut}
+          />
+        </div>
+        <div className="googleMap">
+          <MapComp 
+            center={this.state.mapCenter} 
+            outline={this.state.outline} 
+            markerList={this.state.markerList} 
+            completedMarkerList={this.state.completedMarkerList} 
+            bounds={this.state.bounds}
+            mouseOverCompleteLocation={this.state.mouseOverComplete}
+            mouseOverIncompleteLocation={this.state.mouseOverIncomplete}
+            mouseOverComplete={this.state.mouseOverComplete}
+            mouseOverIncomplete={this.state.mouseOverIncomplete}
+          />
+        </div>
     </div>)
   }
 }

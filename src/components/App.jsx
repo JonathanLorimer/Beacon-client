@@ -62,7 +62,8 @@ class App extends Component {
        <TopNav auth={this.state.is_login} currentUser={this.state.currentUser} onLogout={this.handleLogout} />
        <Grid>
          <Switch>
-           <Route path="/" exact component={Dashboard} />
+           <Route path="/" exact render={()=>
+                  <Dashboard {...this.props} auth={this.state.is_login} currentUser={this.state.currentUser} onLogout={this.handleLogout}/>} />
            <Route path="/userlogin" render={()=>
                    <Userlogin onLogin={this.handleLogin} auth={this.state.is_login} currentUser={this.state.currentUser}/>} />
            <Route path="/achievements" render={(props)=>
