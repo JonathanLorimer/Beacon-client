@@ -63,7 +63,7 @@ class App extends Component {
        <Grid>
          <Switch>
            <Route path="/" exact render={()=>
-                  <Dashboard {...this.props} auth={this.state.is_login} currentUser={this.state.currentUser} onLogout={this.handleLogout}/>} />
+                  <Dashboard {...this.props} auth={this.state.is_login} onLogin={this.handleLogin} currentUser={this.state.currentUser} onLogout={this.handleLogout}/>} />
            <Route path="/userlogin" render={()=>
                    <Userlogin onLogin={this.handleLogin} auth={this.state.is_login} currentUser={this.state.currentUser}/>} />
            <Route path="/achievements" render={(props)=>

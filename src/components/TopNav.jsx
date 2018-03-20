@@ -17,7 +17,7 @@ render(){
     <div className="input-coord">
       <span id="beacon" className="topnav element"><Link to='/'>Beacon</Link></span>
       <span className="topnav element">
-        {(this.props.auth && this.props.currentUser.data !=="failed") ? (<Link to="/userlogin" onClick={this.props.onLogout}>Logout</Link>) :( <Link to="/userlogin">User Login</Link>)}
+        {(this.props.auth && this.props.currentUser.data !=="failed") ? (<Link to="/" onClick={this.props.onLogout}>Logout</Link>) :("")}
       </span>
       <span className="topnav element"><Link to="/achievements">Achievements</Link></span>
       <span className="topnav element"><Link to="/diary">Diary</Link></span>

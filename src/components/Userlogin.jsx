@@ -52,9 +52,9 @@ class Userlogin extends React.Component {
         <div>
           <h1>Login</h1>
           <form id="login-form" onSubmit={(event) => this.postSession(event)}>
-            <label htmlFor="email">email </label><br/>
+            <label htmlFor="email"> Email </label>
             <input type="text" id="email"  name="email"/><br/>
-            <label htmlFor="password">Password </label><br/>
+            <label htmlFor="password"> Password </label>
             <input type="password" id="password" name="password"/><br/>
             <input type="submit" value="Login"/>
           </form>

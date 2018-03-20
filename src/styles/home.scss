@@ -192,7 +192,21 @@ button{
   margin: 50px auto;
 }
 
-.container.rightside{
+.login-form {
+  height: 300px;
+  width: 300px;
+  margin: auto;
+  padding: 40px;
+  h1 {
+    text-align: center;
+  }
+}
+
+#login-form{
+  text-align: center;
+}
+
+.container.rightside {
   text-align: center;
 }
 
@@ -220,4 +234,8 @@ button{
 ::-webkit-scrollbar-thumb {
   background-color: black;
   // outline: 3px solid rgb(0, 0, 0);
+}
+
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 30px white inset;
 }
