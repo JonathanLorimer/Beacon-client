@@ -2,8 +2,8 @@ import React from 'react'
 // import { Row, Col, PageHeader, Table } from 'react-bootstrap'
 import { Redirect } from 'react-router-dom'
 // import { Route, Redirect, Switch, Link } from 'react-router-dom'
-import Resource from '../models/resource'
-const user = Resource("sessions")
+// import Resource from '../models/resource'
+// const user = Resource("sessions")
 
 class Userlogin extends React.Component {
   constructor(props) {
@@ -18,7 +18,7 @@ class Userlogin extends React.Component {
 
    postSession(event) {
     event.preventDefault()
-    let self = this;
+    // let self = this;
     fetch('http://localhost:3000/sessions',
       {
         header: {
@@ -31,10 +31,11 @@ class Userlogin extends React.Component {
     )
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
-        this.props.onLogin(data.data)
-        this.setState({ username: data.data.username, redirect: true })
-        // self.props.history.push("/achievements")
+        
+        if(data !== 'failed'){
+          this.props.onLogin(data.data)
+          this.setState({ username: data.data.username, redirect: true })
+        }
       })
       .catch((error) => {console.log("Error in the Post Session fetch: ", error)})
    }

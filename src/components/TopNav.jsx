@@ -1,7 +1,7 @@
 import React , { Component } from 'react'
 import { Link } from 'react-router-dom'
-import Resource from '../models/resource'
-const Coordinates = Resource('coordinates')
+// import Resource from '../models/resource'
+// const Coordinates = Resource('coordinates')
 
 class TopNav extends Component {
   constructor(props){

@@ -13,12 +13,10 @@ class Locations extends React.Component {
     }
   }
 
-  componentWillReceiveProps(){
-    console.log('receving props !!!');
-  }
+
 
   componentWillMount() {
-    console.log('component will mount')
+    console.log('will mount')
     LocationsList.findAllChildren(this.props.neighbourhood_id)
       .then((result) => {
         this.setState({ locations: result.data, errors: null })
