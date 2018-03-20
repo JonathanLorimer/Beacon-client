@@ -2,8 +2,8 @@ import React from 'react'
 // import { Row, Col, PageHeader, Table } from 'react-bootstrap'
 import { Redirect } from 'react-router-dom'
 // import { Route, Redirect, Switch, Link } from 'react-router-dom'
-import Resource from '../models/resource'
-const user = Resource("sessions")
+// import Resource from '../models/resource'
+// const user = Resource("sessions")
 
 class Userlogin extends React.Component {
   constructor(props) {
@@ -18,7 +18,7 @@ class Userlogin extends React.Component {
 
    postSession(event) {
     event.preventDefault()
-    let self = this;
+    // let self = this;
     fetch('http://localhost:3000/sessions',
       {
         header: {

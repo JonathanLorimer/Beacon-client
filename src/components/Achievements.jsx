@@ -136,13 +136,13 @@ class Achievements extends React.Component {
         return x > y ? -1 : x < y ? 1 : 0;
       });
       let newLatestAchievements = []
-      if (locationsArray.length < 5) {
+      if (locationsArray.length < 10) {
         for (let x = 0; x < locationsArray.length; x++){
           newLatestAchievements.unshift(locationsArray[x])
         }
       }
       else {
-        for (let x = 0; x < 5; x++){
+        for (let x = 0; x < 10; x++){
           newLatestAchievements.push(locationsArray[x])
         }
       }

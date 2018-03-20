@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
+// import { Link } from 'react-router-dom'
 import { Redirect } from 'react-router-dom'
-import Resource from '../models/resource'
-const user = Resource("sessions")
+// import Resource from '../models/resource'
+// const user = Resource("sessions")
 
 class Dashboard extends Component {
   constructor(props){
@@ -16,7 +16,7 @@ class Dashboard extends Component {
 
   postSession(event) {
     event.preventDefault()
-    let self = this;
+    // let self = this;
     fetch('http://localhost:3000/sessions',
       {
         header: {
