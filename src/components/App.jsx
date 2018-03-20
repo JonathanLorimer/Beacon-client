@@ -8,7 +8,9 @@ import Achievements from './Achievements'
 import Regions from './Regions'
 import Dashboard from './Dashboard'
 import Userlogin from './Userlogin'
+import Resource from '../models/resource'
 
+const Updates = Resource('users', 'updates')
 
 /*
 This is the main app component. Note that we're using react-router to change
@@ -38,6 +40,30 @@ class App extends Component {
    }
  }
 
+  componentDidMount() {
+    setInterval(() => {
+      Updates.findAllChildren(1)
+        .then((result) => {
+          if (result.data) {
+            let newCompletedAchievements = this.state.completedAchievements
+            let foundLocation = []
+
+
+            for (let location in newCompletedAchievements.locations) {
+              if (newCompletedAchievements.locations[location].name === result.data.name) {
+                foundLocation.push(location)
+              }
+            }
+
+            if(foundLocation.length === 0 && result.data.name) {
+              newCompletedAchievements.locations[Object.keys(newCompletedAchievements.locations).length] = result.data
+              this.setState({ completedAchievements: newCompletedAchievements })
+            }
+          }
+        })
+    }, 5000)
+  }
+
  handleLogin = (data) => {
 
   let newCompletedAchievements = data[1]
@@ -46,7 +72,6 @@ class App extends Component {
    for (let location in newCompletedAchievements.locations){
      for (let visitedLocation of newLocationsVisited){
        if(newCompletedAchievements.locations[location].name === visitedLocation.name){
-        console.log(`Changing ${newCompletedAchievements.locations[location].created_at} to ${visitedLocation.visited_at}`);
          newCompletedAchievements.locations[location].created_at = visitedLocation.visited_at
        }
      }
