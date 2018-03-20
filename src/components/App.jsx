@@ -55,7 +55,7 @@ class App extends Component {
               }
             }
 
-            if(foundLocation.length === 0 && result.data.name) {
+            if (foundLocation.length === 0 && result.data.name && newCompletedAchievements.locations) {
               newCompletedAchievements.locations[Object.keys(newCompletedAchievements.locations).length] = result.data
               this.setState({ completedAchievements: newCompletedAchievements })
             }

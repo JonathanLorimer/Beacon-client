@@ -102,7 +102,6 @@ class Achievements extends React.Component {
   }
 
   mouseOverComplete = (marker) => {
-    console.log('hello')
     let newMouseOverComplete = []
     let markerLat = (marker.least_lat + marker.greatest_lat) / 2
     let markerLng = (marker.least_lng + marker.greatest_lng) / 2
@@ -111,7 +110,6 @@ class Achievements extends React.Component {
   }
 
   mouseOverIncomplete = (marker) => {
-    console.log('hello')
     let newMouseOverIncomplete = []
     let markerLat = (marker.least_lat + marker.greatest_lat) / 2
     let markerLng = (marker.least_lng + marker.greatest_lng) / 2
@@ -120,7 +118,6 @@ class Achievements extends React.Component {
   }
 
   mouseOut = () => {
-    console.log('mouse out')
     this.setState({ mouseOverComplete: [], mouseOverIncomplete: [] })
   }
 
