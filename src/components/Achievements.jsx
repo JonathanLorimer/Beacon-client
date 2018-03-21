@@ -161,6 +161,7 @@ class Achievements extends React.Component {
   }
 
   getLatestAchievementList = () => {
+    // console.log("WE ARE HERE ------->: ", this.props.completedAchievements);
     return this.props.completedAchievements
   }
 
