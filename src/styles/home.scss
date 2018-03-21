@@ -106,18 +106,13 @@ button{
   color: black;
   height: 1.5em;
   clear: both;
-  width: 300px;
+  width: 400px;
   margin: 5px;
 }
 .achievement.region.complete {
-  font-size: 2em;
-  float: right;
   border: 2px solid $orange;
   color: $orange;
-  height: 1.5em;
-  clear: both;
-  width: 300px;
-  margin: 5px;
+
 }
 .achievement.region:hover {
   border: 0 solid;
@@ -135,6 +130,16 @@ button{
 .container {
   width: 100%;
   margin: 0px;
+  ::-webkit-scrollbar {
+    width: 1em;
+  }
+  ::-webkit-scrollbar-track-piece {
+    background-color: white
+  } 
+  ::-webkit-scrollbar-thumb {
+    background-color: black;
+    // outline: 3px solid rgb(0, 0, 0);
+  }
 }
 .container.regioncontainer {
   width: 23%;
@@ -277,18 +282,18 @@ hr {
   margin: 10px;
 }
 
-::-webkit-scrollbar {
-    width: 1em;
-}
+// ::-webkit-scrollbar {
+//     width: 1em;
+// }
  
-::-webkit-scrollbar-track-piece {
-  background-color: white
-}
+// ::-webkit-scrollbar-track-piece {
+//   background-color: white
+// }
  
-::-webkit-scrollbar-thumb {
-  background-color: black;
-  // outline: 3px solid rgb(0, 0, 0);
-}
+// ::-webkit-scrollbar-thumb {
+//   background-color: black;
+//   // outline: 3px solid rgb(0, 0, 0);
+// }
 
 input:-webkit-autofill {
   -webkit-box-shadow: 0 0 0 30px white inset;
