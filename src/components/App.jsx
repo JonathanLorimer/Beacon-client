@@ -5,7 +5,7 @@ import { Grid } from 'react-bootstrap'
 import TopNav from './TopNav'
 import Diary from './Diary'
 import Achievements from './Achievements'
-import Regions from './Regions'
+// import Regions from './Regions'
 import Dashboard from './Dashboard'
 import Userlogin from './Userlogin'
 import Resource from '../models/resource'
@@ -55,7 +55,7 @@ class App extends Component {
               }
             }
 
-            if(foundLocation.length === 0 && result.data.name) {
+            if (foundLocation.length === 0 && result.data.name && newCompletedAchievements.locations) {
               newCompletedAchievements.locations[Object.keys(newCompletedAchievements.locations).length] = result.data
               this.setState({ completedAchievements: newCompletedAchievements })
             }
@@ -70,7 +70,7 @@ class App extends Component {
   let newLocationsVisited = data[2]
 
    for (let location in newCompletedAchievements.locations){
-     for (let visitedLocation of newLocationsVisited){
+     for (let visitedLocation in newLocationsVisited){
        if(newCompletedAchievements.locations[location].name === visitedLocation.name){
          newCompletedAchievements.locations[location].created_at = visitedLocation.visited_at
        }
@@ -79,6 +79,7 @@ class App extends Component {
 
 
   this.setState({is_login: true, currentUser: data[0].username, completedAchievements: newCompletedAchievements})
+  // console.log(this.state.completedAchievements);
  }
 
  handleLogout = () => {

@@ -1,6 +1,6 @@
 import React from "react"
 import { compose, withProps } from "recompose"
-import { withScriptjs, withGoogleMap, GoogleMap, Marker, Polygon } from "react-google-maps"
+import { withScriptjs, withGoogleMap, GoogleMap, Marker } from "react-google-maps"
 
 const markerIncomplete = require('../styles/location_incomplete.png')
 const markerComplete = require('../styles/location_complete.png')
@@ -16,11 +16,8 @@ const MyMapComponent = compose(
   }),
   withScriptjs,
   withGoogleMap,
-)
-
-((props) => {
-  return (
-    <GoogleMap
+)((props) => {
+  return(<GoogleMap
       defaultZoom={4}
       center={props.center}
       ref={(ref) => { this.map = ref; }}
@@ -223,8 +220,6 @@ const MyMapComponent = compose(
               ]
             }
           ] }}
-
-
     >
       {/* {console.log(props.markerList)} */}
       {(props.bounds.length > 0) && (this.map.fitBounds(
@@ -233,47 +228,65 @@ const MyMapComponent = compose(
           .extend(new window.google.maps.LatLng(props.bounds[0][0], props.bounds[1][1]))))}
 
       {props.markerList && props.markerList.map(marker => (<Marker
+        zIndex={5}
         icon={{
           url: markerIncomplete,
-          scaledSize: new window.google.maps.Size(25, 25)
+          scaledSize: new window.google.maps.Size(25, 25),
+        optimized: false,
+        zIndex: 5
         }}
         position={{ lat: marker.lat, lng: marker.lng }} />))}
 
       {props.completedMarkerList && props.completedMarkerList.map(marker => (<Marker
+      zIndex={5}
         icon={{
           url:  markerComplete ,
-          scaledSize: new window.google.maps.Size(25, 25)
+        scaledSize: new window.google.maps.Size(25, 25),
+        optimized: false,
+        zIndex: 5
         }}
         position={{ lat: marker.lat, lng: marker.lng }} />))}
 
       {props.mouseOverComplete && props.mouseOverComplete.map(marker => (<Marker
+      zIndex={9999}
         icon={{
           url: markerMouseOverComplete,
-          scaledSize: new window.google.maps.Size(25, 25)
+        scaledSize: new window.google.maps.Size(25, 25),
+        optimized: false,
+        zIndex: 99999
         }}
         position={{ lat: marker.lat, lng: marker.lng }} />))}
 
       {props.mouseOverIncomplete && props.mouseOverIncomplete.map(marker => (<Marker
+      zIndex={9999}
         icon={{
           url: markerMouseOverIncomplete,
-          scaledSize: new window.google.maps.Size(25, 25)
+        scaledSize: new window.google.maps.Size(25, 25),
+        optimized: false,
+        zIndex: 99999
         }}
         position={{ lat: marker.lat, lng: marker.lng }} />))}
 
       {props.mouseOverCompleteLocation && props.mouseOverCompleteLocation.map(marker => (<Marker
+      zIndex={9999}
         icon={{
           url: markerMouseOverComplete,
-          scaledSize: new window.google.maps.Size(25, 25)
+        scaledSize: new window.google.maps.Size(25, 25),
+        optimized: false,
+        zIndex: 99999
         }}
         position={{ lat: marker.lat, lng: marker.lng }} />))}
 
       {props.mouseOverIncompleteLocation && props.mouseOverIncompleteLocation.map(marker => (<Marker
+      zIndex={9999}
         icon={{
           url: markerMouseOverIncomplete,
-          scaledSize: new window.google.maps.Size(25, 25)
+        scaledSize: new window.google.maps.Size(25, 25),
+        optimized: false,
+        zIndex: 99999
         }}
         position={{ lat: marker.lat, lng: marker.lng }} />))}
-     {props.outline && <Polygon paths={props.outline} />}
+   
 
     </GoogleMap>
     )

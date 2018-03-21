@@ -102,7 +102,6 @@ class Achievements extends React.Component {
   }
 
   mouseOverComplete = (marker) => {
-    console.log('hello')
     let newMouseOverComplete = []
     let markerLat = (marker.least_lat + marker.greatest_lat) / 2
     let markerLng = (marker.least_lng + marker.greatest_lng) / 2
@@ -111,7 +110,6 @@ class Achievements extends React.Component {
   }
 
   mouseOverIncomplete = (marker) => {
-    console.log('hello')
     let newMouseOverIncomplete = []
     let markerLat = (marker.least_lat + marker.greatest_lat) / 2
     let markerLng = (marker.least_lng + marker.greatest_lng) / 2
@@ -120,7 +118,6 @@ class Achievements extends React.Component {
   }
 
   mouseOut = () => {
-    console.log('mouse out')
     this.setState({ mouseOverComplete: [], mouseOverIncomplete: [] })
   }
 
@@ -139,13 +136,13 @@ class Achievements extends React.Component {
         return x > y ? -1 : x < y ? 1 : 0;
       });
       let newLatestAchievements = []
-      if (locationsArray.length < 5) {
+      if (locationsArray.length < 10) {
         for (let x = 0; x < locationsArray.length; x++){
-          newLatestAchievements.unshift(locationsArray[x])
+          newLatestAchievements.push(locationsArray[x])
         }
       }
       else {
-        for (let x = 0; x < 5; x++){
+        for (let x = 0; x < 10; x++){
           newLatestAchievements.push(locationsArray[x])
         }
       }
@@ -169,6 +166,11 @@ class Achievements extends React.Component {
             </table>
           </div>)
     }
+  }
+
+  getLatestAchievementList = () => {
+    // console.log("WE ARE HERE ------->: ", this.props.completedAchievements);
+    return this.props.completedAchievements
   }
 
  render() {
@@ -195,6 +197,7 @@ class Achievements extends React.Component {
           mouseOverComplete={this.mouseOverComplete}
           mouseOverIncomplete={this.mouseOverIncomplete}
           mouseOut={this.mouseOut}
+          getLatestAchievementList={this.getLatestAchievementList}
         />
       </div>
       <div className="googleMap">
