@@ -70,7 +70,7 @@ class App extends Component {
   let newLocationsVisited = data[2]
 
    for (let location in newCompletedAchievements.locations){
-     for (let visitedLocation of newLocationsVisited){
+     for (let visitedLocation in newLocationsVisited){
        if(newCompletedAchievements.locations[location].name === visitedLocation.name){
          newCompletedAchievements.locations[location].created_at = visitedLocation.visited_at
        }
@@ -79,6 +79,7 @@ class App extends Component {
 
 
   this.setState({is_login: true, currentUser: data[0].username, completedAchievements: newCompletedAchievements})
+  // console.log(this.state.completedAchievements);
  }
 
  handleLogout = () => {
