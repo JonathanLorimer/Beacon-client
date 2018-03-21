@@ -15,8 +15,17 @@ class Locations extends React.Component {
 
 
 
+
+  // componentWillUpdate() {
+  //   LocationsList.findAllChildren(this.props.neighbourhood_id)
+  //     .then((result) => {
+  //       this.setState({ locations: result.data, errors: null })
+  //     })
+  //     .catch((errors) => this.setState({ errors: errors }))
+  // }
+
   componentWillMount() {
-    console.log('will mount')
+    console.log('queries updating the state with')
     LocationsList.findAllChildren(this.props.neighbourhood_id)
       .then((result) => {
         this.setState({ locations: result.data, errors: null })
@@ -28,8 +37,10 @@ class Locations extends React.Component {
   // Presenter maps html over array of locations
   listPresenter() {
     console.log('presenting the liist');
+    let latestAchList = this.props.getLatestAchievementList()
+    console.log('called functionm latestAchList: ', latestAchList)
     const list = this.state.locations.map((location) => {
-      if (this.props.completedAchievements.locations.hasOwnProperty(location.id)){
+      if (latestAchList.locations.hasOwnProperty(location.id)){
         return (<div className="achievement location complete" onMouseOver={() => this.props.mouseOverComplete(location)} onMouseOut={() => this.props.mouseOut() }>{location.name}</div>)
       } else {
         return (<div className="achievement location" onMouseOver={() => this.props.mouseOverIncomplete(location)}>{location.name}</div>)

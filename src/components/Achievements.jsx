@@ -160,6 +160,10 @@ class Achievements extends React.Component {
     }
   }
 
+  getLatestAchievementList = () => {
+    return this.props.completedAchievements
+  }
+
  render() {
    return (
     <div id="container">
@@ -184,6 +188,7 @@ class Achievements extends React.Component {
           mouseOverComplete={this.mouseOverComplete}
           mouseOverIncomplete={this.mouseOverIncomplete}
           mouseOut={this.mouseOut}
+          getLatestAchievementList={this.getLatestAchievementList}
         />
       </div>
       <div className="googleMap">

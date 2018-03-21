@@ -17,8 +17,7 @@ const MyMapComponent = compose(
   withScriptjs,
   withGoogleMap,
 )((props) => {
-    return(
-    <GoogleMap
+  return(<GoogleMap
       defaultZoom={4}
       center={props.center}
       ref={(ref) => { this.map = ref; }}
@@ -269,7 +268,7 @@ const MyMapComponent = compose(
           scaledSize: new window.google.maps.Size(25, 25)
         }}
         position={{ lat: marker.lat, lng: marker.lng }} />))}
-     
+   
 
     </GoogleMap>
     )

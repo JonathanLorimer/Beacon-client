@@ -60,6 +60,7 @@ class Neighbourhoods extends React.Component {
                 mouseOverComplete={this.props.mouseOverCompleteLocation}
                 mouseOverIncomplete={this.props.mouseOverIncompleteLocation}
                 mouseOut={this.props.mouseOut}
+                getLatestAchievementList={this.props.getLatestAchievementList}
                 />}
             </div>)
         } else {
@@ -79,6 +80,7 @@ class Neighbourhoods extends React.Component {
                 mouseOverComplete={this.props.mouseOverCompleteLocation}
                 mouseOverIncomplete={this.props.mouseOverIncompleteLocation}
                 mouseOut={this.props.mouseOut}
+                getLatestAchievementList={this.props.getLatestAchievementList}
                 />}
             </div>)
         }
