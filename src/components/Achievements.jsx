@@ -152,14 +152,22 @@ class Achievements extends React.Component {
 
         const list = newLatestAchievements.map((location) => {
           return (
-            <tr className="diary entry">
-              <td>{location.name}</td>
+            <tr>
+              <td className="latest-name">{location.name}</td>
               <td>{location.created_at.slice(0,10)}</td>
               <td>{location.category}</td>
             </tr>)
         })
-        return list
-
+        return (
+          <div>
+            <h2>Latest Achievements</h2>
+            <hr></hr>
+            <table className="table-achievement">
+              <tbody className="latest-achievement">
+                {list}
+              </tbody>
+            </table>
+          </div>)
     }
   }
 

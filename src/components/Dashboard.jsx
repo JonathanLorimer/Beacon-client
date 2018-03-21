@@ -53,7 +53,7 @@ class Dashboard extends Component {
             <input type="text" id="email"  name="email"/><br/>
             <label htmlFor="password"> Password </label><br/>
             <input type="password" id="password" name="password"/><br/>
-            <input type="submit" value="Login"/>
+            <input className="submit-button" type="submit" value="Login"/>
           </form>
         </div>
       </div>)

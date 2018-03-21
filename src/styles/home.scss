@@ -170,10 +170,12 @@ button{
 
   a{
     font-size: 1.5em;
-    color: black
+    color: black;
+    text-decoration: none;
   }
   a:hover{
     color: $orange;
+    text-decoration: underline;
   }
 
 }
@@ -188,22 +190,74 @@ button{
 .background{
   width: 1152px;
   height: 208px;
-  background-image: url(./BeaconEmblem.png);
+  background-image: url(./BeaconEmblemHighQuality.png);
+  background-size: 1152px 208px;
   margin: 50px auto;
 }
 
 .login-form {
-  height: 300px;
-  width: 300px;
-  margin: auto;
-  padding: 40px;
+  height: 430px;
+  width: 402px;
+  margin: 120px auto;
+  padding: 20px 60px;
+  background-color: whitesmoke;
+  box-shadow: 10px 18px 74px 1px rgba(0,0,0,0.24);
   h1 {
     text-align: center;
   }
+  input {
+    width: 380px;
+    padding: 5px 10px;
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    border: 1px solid grey;
+  }
+  label {
+    font-size: 1.5em;
+  }
 }
 
+input.submit-button{
+  margin-top: 30px;
+  border-radius: 25px;
+  width: 402px;
+}
+input.submit-button:hover{
+  border: 1px solid $orange;
+  color: $orange;
+}
+
+
 #login-form{
+}
+
+.latest-achievement{
+  width:100%;
+}
+
+.table-achievement{
   text-align: center;
+  font-size: 2em;
+  margin: auto;
+  tr{
+    padding: 0px 5px;
+    td{
+      padding: 0 10px;
+    }
+    td.latest-name{
+      color: $orange;
+    }
+  }
+}
+
+hr {
+  width: 95%;
+  font-size: 1px;
+  color: rgba(0, 0, 0, 0);
+  line-height: 1px;
+  background-color: grey;
+  margin-top: -6px;
+  margin-bottom: 10px;
 }
 
 .container.rightside {
