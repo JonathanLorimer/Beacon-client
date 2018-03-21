@@ -1,11 +1,15 @@
 body {
-  background: white;
   color: black;
   font-family: "Heebo", sans-serif;
 
 }
 th, td {
   text-align: center;
+}
+
+.sortbuttons{
+  clear:both;
+  margin: 40px 80px;
 }
 
 button:focus {
