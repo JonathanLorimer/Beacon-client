@@ -144,7 +144,7 @@ button{
   }
 }
 .container.regioncontainer {
-  width: 23%;
+  width: 28%;
   float: left;
   text-align: center;
   // border: 2px solid black;
@@ -160,8 +160,8 @@ button{
     text-align: center;
   }
   float: right;
-  width: 75%;
-  height: 30em;
+  width: 70%;
+  height: 20em;
   // border: 2px solid black;
   overflow: auto;
 }
@@ -175,7 +175,7 @@ button{
 
 .topnav.element{
   float: right;
-  margin: 1.4em 2em;
+  margin: 1.4em 4em;
 
   a{
     font-size: 3em;
@@ -279,10 +279,10 @@ hr {
 }
 
 .googleMap {
-  width: 75%;
+  width: 70%;
   margin: 10px 10px 0 0;
   float: right;
-  height: 45x0px;
+  height: 40em;
 }
 
 #container {
