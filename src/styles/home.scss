@@ -8,7 +8,7 @@ body {
   color: black;
   font-family: $font;
   background-image: url(./pexels-photo-354103.jpeg);
-  background-size: 1980px;
+  background-size: 1920px;
 }
 
 table
@@ -144,7 +144,7 @@ button{
   }
 }
 .container.regioncontainer {
-  width: 28%;
+  width: 23%;
   float: left;
   text-align: center;
   // border: 2px solid black;
@@ -160,8 +160,8 @@ button{
     text-align: center;
   }
   float: right;
-  width: 70%;
-  height: 20em;
+  width: 75%;
+  height: 25em;
   // border: 2px solid black;
   overflow: auto;
 }
@@ -279,10 +279,10 @@ hr {
 }
 
 .googleMap {
-  width: 70%;
+  width: 75%;
   margin: 10px 10px 0 0;
   float: right;
-  height: 40em;
+  height: 25em;
 }
 
 #container {
