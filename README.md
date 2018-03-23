@@ -18,14 +18,14 @@ The idea is that the user gains an achievement for each location they visit, and
 ## Screenshots
 
 
-!["Landing page"]()
+!["Landing page"](https://github.com/Zushisan/Beacon-client/blob/master/docs/landing-page.png?raw=true)
 
-!["Latest Achievements"]()
+!["Latest Achievements"](https://github.com/Zushisan/Beacon-client/blob/master/docs/latest-ach.png?raw=true)
 
-!["Neighbourhoods"]()
+!["Neighbourhoods"](https://github.com/Zushisan/Beacon-client/blob/master/docs/neighbourhoods.png?raw=true)
 
-!["Some Achievements"]()
+!["Some Achievements"](https://github.com/Zushisan/Beacon-client/blob/master/docs/ach-1.png?raw=true)
 
-!["Some Achievements"]()
+!["Some Achievements"](https://github.com/Zushisan/Beacon-client/blob/master/docs/ach-2.png?raw=true)
 
-!["Diary"]()
+!["Diary"](https://github.com/Zushisan/Beacon-client/blob/master/docs/diary.png?raw=true)
